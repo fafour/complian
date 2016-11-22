@@ -73,7 +73,7 @@
             android:hint="กรอกรหัส"
             android:textSize="17dp"
             android:drawablePadding="8dp"
-            android:drawableLeft="@drawable/key"
+            android:drawableLeft="@drawable/log_key"
             android:inputType="textPassword|textCapSentences|textAutoCorrect"
             android:layout_height="wrap_content"
             android:id="@+id/password"/>
@@ -86,8 +86,6 @@
         android:layout_width="match_parent"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/bg_screen2"
-        android:background="@drawable/ripple_effect"
         android:textSize="17dp"
         android:onClick="Click3"
         android:text="ลงชื่อเข้าใช้"/>

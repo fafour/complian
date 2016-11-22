@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.ActionBar;
@@ -12,16 +13,28 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
-    TextView txtMainApp;
+//    TextView txtMainApp;
+//    Button btn1,btn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
+//        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
+//        btn1 = (Button) findViewById(R.id.btn1);
+//        btn2 = (Button) findViewById(R.id.btn2);
+//
+//        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/th.ttf");
+//        txtMainApp.setTypeface(face);
+//        btn1.setTypeface(face);
+//        btn2.setTypeface(face);
+
+
+
 
 
         clearCache.deleteCache(this);

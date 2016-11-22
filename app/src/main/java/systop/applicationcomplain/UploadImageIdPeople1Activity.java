@@ -96,27 +96,7 @@ public class UploadImageIdPeople1Activity extends AppCompatActivity {
 
             }
         });
-        ImageButton btnCamera = (ImageButton) findViewById(R.id.btn_camera);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-
-                // call android default camera
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString());
-
-                try {
-
-                    intent.putExtra("return-data", true);
-                    startActivityForResult(intent, PICK_FROM_CAMERA);
-
-                } catch (ActivityNotFoundException e) {
-                }
-
-
-            }
-        });
 //        buttonGallery.setOnClickListener(new View.OnClickListener() {
 //
 //            @Override

@@ -17,17 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/btn_camera"
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            android:background="@drawable/photo"/>
         <Button
             android:id="@+id/btn_take_camera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/camera_icon"
             android:text="ถ่ายภาพ"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:gravity="center"
             android:layout_gravity="center"
             />
@@ -63,7 +59,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="upload image"
+        android:text="บันทึกรูปภาพ"
         android:onClick="upload"
         android:id="@+id/buttonUpload" />
 
