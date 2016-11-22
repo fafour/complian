@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="ค้นหาชื่อแพทย์" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="แจ้งเรื่องร้องเรียน" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="ดูรายละเอียดเรื่องร้องเรียนทั้งหมด" />
+        <item
+            android:id="@+id/nav_c"
+            android:icon="@drawable/ic_menu_share"
+            android:title="เปลี่ยนรหัสผ่าน" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="ออกจากระบบ" />
+    </group>
+
+
+
+</menu>

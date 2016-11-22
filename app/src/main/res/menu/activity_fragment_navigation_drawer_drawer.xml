@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="ค้นหาชื่อแพทย์" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="แจ้งเรื่องร้องเรียน" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="ดูรายละเอียดเรื่องร้องเรียนทั้งหมด" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="จัดการเจ้าหน้าที่" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="ดูรายละเอียดที่รับคำร้อง" />
+        <item
+            android:id="@+id/nav_a"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="ดูรายละเอียดไม่รับคำร้อง" />
+        <item
+            android:id="@+id/nav_b"
+            android:icon="@drawable/ic_menu_share"
+            android:title="ดูรายละเอียดของเดือนนี้" />
+        <item
+            android:id="@+id/nav_d"
+            android:icon="@drawable/ic_menu_share"
+            android:title="ดูรายละเอียดแบบเลือกเดือน/ปี" />
+        <item
+            android:id="@+id/nav_c"
+            android:icon="@drawable/ic_menu_share"
+            android:title="เปลี่ยนรหัสผ่าน" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="ออกจากระบบ" />
+    </group>
+
+
+</menu>

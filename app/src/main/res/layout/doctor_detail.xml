@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:background="@android:color/darker_gray"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textSize="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="กรอกชื่อผู้ถูกร้อง"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"/>
+    <EditText
+        android:id="@+id/item_name"
+        android:inputType="text"
+        android:hint="*กรอกชื่อ"
+        android:background="@android:color/background_light"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"/>
+    <EditText
+        android:id="@+id/item_sname"
+        android:inputType="text"
+        android:hint="*กรอกนามสกุล"
+        android:textColorHint="@android:color/darker_gray"
+        android:background="@android:color/background_light"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"/>
+    <EditText
+        android:id="@+id/item_id"
+        android:inputType="numberSigned"
+        android:hint="กรอกเลขที่ใบประกอบวิชาชีพเวชกรรม"
+        android:background="@android:color/background_light"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ยกเลิก"
+            android:id="@+id/button1"
+            android:textSize="15dp"
+            android:onClick="Click1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ตกลง"
+            android:id="@+id/button2"
+            android:textSize="15dp"
+            android:onClick="Click2"/>
+    </LinearLayout>
+
+
+</LinearLayout>

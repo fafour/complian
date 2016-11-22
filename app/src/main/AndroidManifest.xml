@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="systop.applicationcomplain">
+
+    <uses-sdk
+        android:maxSdkVersion="10"
+        android:minSdkVersion="8" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-configuration android:reqTouchScreen="finger" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <compatible-screens>
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+    </compatible-screens>
+
+    <supports-gl-texture android:name="GL_IMG_texture_compression_pvrtc" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="แอพพลิเคชั่นร้องเรียนแพทย์"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:uiOptions="splitActionBarWhenNarrow">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="ล็อคอิน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".IndexActivity"
+            android:label="สำหรับผู้ร้อง"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ScreenSlidePagerActivity" />
+        <activity android:name=".ClearActivity" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingAdressActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingAddDoctorActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingDetailActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ScreenSlidePager1Activity" />
+        <activity android:name=".SuccessActivity" />
+        <activity
+            android:name=".InputDataActivity"
+            android:label="ตรวจสอบสถาานะการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ShowDataDetailActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuEmployeeActivity"
+            android:label="@string/title_activity_menu_employee"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuAdminActivity"
+            android:label="@string/title_activity_menu_admin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchDoctorActivity"
+            android:label= " "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".ChangPasswordActivity"
+            android:label="เปลี่ยนรหัสผ่าน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ManageActivity"
+            android:label="จัดการเจ้าหน้าที่"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchEmployeeActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".UpdateStatusEmployeeActivity"
+            android:label="แก้ไขสถานะของเจ้าหน้าที่"
+            />
+        <activity
+            android:name=".UpdateLevelEmployeeActivity"
+            android:label="แก้ไขระดับของเจ้าหน้าที่"/>
+        <activity
+            android:name=".AddEmployeeActivity"
+            android:label="เพิ่มเจ้าหน้าที่"/>
+        <activity
+            android:name=".UpdateNameActivity"
+            android:label="แก้ไขชื่อขสกุลเจ้าหน้าที่"
+            />
+        <activity
+            android:name=".Manage1Activity"
+            android:label="ผลการค้นหาเจ้าหน้าที่"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScrollingEmployeeAddDataActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingEmployeeAddAdressActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingEmployeeAddDoctorActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingEmployeeDetailActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".MenuComplainEmployeeActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuComplainAdminActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdateStatusActivity"
+            android:label="แก้ไขสถานะข้อมูลการร้องเรียน"/>
+        <activity android:name=".UpdateWorkActivity"
+            android:label="แก้ไขผู้รับผิดชอบข้อมูลการร้องเรียน"/>
+        <activity
+            android:name=".ScrollingUpdateEmployeeAddDataActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingUpdateEmployeeAddAdressActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingUpdateEmployeeAddDoctorActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingUpdateEmployeeAddDetailActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SearchComplainEmpActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".SearchComplainAdminActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".ResultSearchActivity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ResultSearch1Activity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingDataActivity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".MenuMountActivity"
+            android:label="ข้อมูลการร้องเรียนที่ของเดือนนี้"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SearchMountActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".MenuMountResultActivity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SearchWrongActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".SearchCheapActivity"
+            android:label=" "
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".MenuCheapActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuWrongActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuWrongResultActivity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuCheapResultActivity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FragmentNavigationDrawer"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="หน้าแรก"/>
+        <activity
+            android:name=".MainMenuEmployeeActivity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuSelectMountYearActivity"
+            android:label="ผลการค้นหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MenuSelectActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".Success1Activity"
+            android:label="ทำรายการเสร็จสิ้น"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuSelect1Activity"
+            android:label="เลิอกเดือนและปีของข้อมูลร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".InputIdPeopleActivity"
+            android:label="กรอกเลขประจำตัวประชาชน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CheckComplainActivity"
+            android:label="  " />
+        <activity
+            android:name=".Scrolling1Activity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingAdress1Activity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingAddDocter1Activity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ScrollingDetail1Activity"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Success2Activity"
+            android:label="ทำรายการเสร็จสิ้น"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UploadImageIdPeopleActivity"
+            android:label="อัพโหลดรูปภาพ"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InputIdPeople1Activity"
+            android:label="กรอกเลขประจำตัวประชาชน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CheckComplain1Activity"
+            android:label="  " />
+        <activity
+            android:name=".UploadImageIdPeople1Activity"
+            android:label="อัพโหลดรูปภาพ"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ScrollingData1Activity"
+            android:label="  "
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

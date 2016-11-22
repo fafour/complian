@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    defaultConfig {
+        applicationId "systop.applicationcomplain"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "10g"
+    }
+}
+
+dependencies {
+    compile 'com.android.support:multidex:1.0.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile files('C:/Users/Fafour/AndroidStudioProjects/ApplicationComplain/jar/volley.jar')
+    compile files('C:/Users/Fafour/AndroidStudioProjects/ApplicationComplain/jar/itextpdf-5.3.3.jar')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+
+
+    compile 'com.getbase:floatingactionbutton:1.10.0'
+
+}
