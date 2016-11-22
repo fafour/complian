@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.AddEmployeeActivity"
     tools:showIn="@layout/activity_add_employee">
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/idUsername"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
             android:hint="กรุณากรอกชื่อผู้ใช้งาน"/>
@@ -88,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/idPass"
+            android:textColor="@android:color/white"
             android:textSize="15dp"
             android:inputType="textPassword"
             android:hint="กรุณากรอกรหัสผ่าน"/>
@@ -121,6 +124,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/idPassAgain"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
             android:inputType="textPassword"
             android:hint="กรุณากรอกรหัสผ่านอีกครั้ง"/>
 
@@ -153,6 +157,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/idNameEmp"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
             android:hint="กรุณากรอกชื่อเจ้าหน้าที่"/>
@@ -180,14 +185,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:inputType=
-                "textCapSentences|textAutoCorrect"
             android:text="  "/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/idSurEmp"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
+            android:inputType=
+                "textCapSentences|textAutoCorrect"
             android:hint="กรุณากรอกนามสกุล"/>
 
     </LinearLayout>
@@ -207,8 +213,8 @@
             android:textSize="15dp"/>
 
         <Spinner android:id="@+id/spinner"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
     </LinearLayout>
 

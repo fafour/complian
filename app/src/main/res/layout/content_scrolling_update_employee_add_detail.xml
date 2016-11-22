@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingUpdateEmployeeAddDetailActivity"
     tools:showIn="@layout/activity_scrolling_update_employee_add_detail">
@@ -71,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@android:color/white"
                 android:enabled="false"
                 android:id="@+id/editText1"
                 android:layout_weight="1" />
@@ -121,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@android:color/white"
                 android:enabled="false"
                 android:id="@+id/editText2"
                 android:layout_weight="1" />
@@ -180,6 +183,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/txtMain"
+                android:textColor="@android:color/white"
                 android:hint="กรุณากรอกหัวข้อเรื่อง">
                 <requestFocus />
             </EditText>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingAdress1Activity"
     tools:showIn="@layout/activity_scrolling_adress1">
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/HouseNo"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกบ้านเลขที่">
@@ -107,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Lane"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -142,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Road"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -189,6 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/SubDistrict"
+                android:textColor="@android:color/white"
                 android:textSize="15dp"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
@@ -237,6 +242,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/District"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกอำเภอ/เขต">
@@ -283,8 +289,8 @@
                 android:text="  "/>
 
             <Spinner android:id="@+id/spinner"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 />
 
 
@@ -318,6 +324,7 @@
                 android:textSize="15dp"
                 android:inputType="numberSigned"
                 android:maxLength="5"
+                android:textColor="@android:color/white"
                 android:hint="กรุณากรอกรหัสไปรษณีย์">
                 <requestFocus />
             </EditText>
@@ -354,6 +361,7 @@
                 android:textSize="15dp"
                 android:inputType="numberSigned"
                 android:maxLength="10"
+                android:textColor="@android:color/white"
                 android:hint="กรุณากรอกเบอร์โทรศัพท์บ้าน">
                 <requestFocus />
             </EditText>

@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.UpdateNameActivity"
     tools:showIn="@layout/activity_update_name">
@@ -42,6 +43,7 @@
         android:id="@+id/item_name3"
         android:inputType="text"
         android:hint="กรอกชื่อ"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
@@ -63,6 +65,7 @@
         android:id="@+id/item_sname3"
         android:inputType="text"
         android:hint="กรอกนามสกุล"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

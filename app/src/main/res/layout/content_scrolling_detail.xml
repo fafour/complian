@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingDetailActivity"
     tools:showIn="@layout/activity_scrolling_detail">
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
+                android:textColor="@android:color/white"
                 android:id="@+id/editText1"
                 android:layout_weight="1" />
 
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:enabled="false"
+                android:textColor="@android:color/white"
                 android:id="@+id/editText2"
                 android:layout_weight="1" />
 
@@ -180,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:id="@+id/txtMain"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"

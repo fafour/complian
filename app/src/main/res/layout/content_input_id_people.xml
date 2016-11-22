@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.InputIdPeopleActivity"
     tools:showIn="@layout/activity_input_id_people">
@@ -53,6 +54,7 @@
 
         <EditText
             android:layout_width="30dp"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -68,6 +70,7 @@
             android:textColor="@android:color/black"/>
         <EditText
             android:layout_width="80dp"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -83,6 +86,7 @@
             android:textColor="@android:color/black"/>
         <EditText
             android:layout_width="100dp"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -98,6 +102,7 @@
             android:textColor="@android:color/black"/>
         <EditText
             android:layout_width="50dp"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
@@ -113,6 +118,7 @@
             android:textColor="@android:color/black"/>
         <EditText
             android:layout_width="30dp"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"

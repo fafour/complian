@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingDataActivity"
     tools:showIn="@layout/activity_scrolling_data">
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/txtidpeole"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/peole"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -99,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/re"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -121,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/phone"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -143,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/txtemail"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -166,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/add"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -188,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/phonehome"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -210,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/atdat"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -232,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/date"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -255,7 +254,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/doctor"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -272,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/hos"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -294,7 +293,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/rec"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -316,7 +315,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/res"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white"/>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -338,7 +337,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/main1"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -361,7 +360,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/de"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white"/>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -383,7 +382,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/code"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -405,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:id="@+id/tus"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

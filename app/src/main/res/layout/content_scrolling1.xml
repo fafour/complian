@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.Scrolling1Activity"
     tools:showIn="@layout/activity_scrolling1">
@@ -75,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/titlename"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกคำนำหน้า">
@@ -124,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/name"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกชื่อ">
@@ -173,6 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/surname"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -213,6 +217,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/relationship"
                 android:hint="กรุณากรอกความสัมพันธ์"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp" >
@@ -263,6 +268,7 @@
                 android:id="@+id/email"
                 android:textSize="15dp"
                 android:inputType="textWebEmailAddress"
+                android:textColor="@android:color/white"
                 android:hint="กรุณากรอกอีเมล์">
                 <requestFocus />
             </EditText>
@@ -311,6 +317,7 @@
                 android:textSize="15dp"
                 android:inputType="numberSigned"
                 android:maxLength="10"
+                android:textColor="@android:color/white"
                 android:hint="กรุณากรอกเบอร์โทรศัพท์">
                 <requestFocus />
             </EditText>

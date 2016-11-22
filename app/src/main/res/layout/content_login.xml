@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.LoginActivity"
@@ -45,6 +46,7 @@
         <EditText
             android:layout_width="match_parent"
             android:hint="กรอกชื่อผู้ใช้งาน"
+            android:textColor="@android:color/white"
             android:drawableLeft="@drawable/user_icon"
             android:drawablePadding="8dp"
             android:textSize="17dp"
@@ -72,6 +74,7 @@
             android:layout_width="match_parent"
             android:hint="กรอกรหัส"
             android:textSize="17dp"
+            android:textColor="@android:color/white"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/log_key"
             android:inputType="textPassword|textCapSentences|textAutoCorrect"
@@ -82,10 +85,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="" />
+
+
     <Button
         android:layout_width="match_parent"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content"
+        android:background="@drawable/design_button"
         android:textSize="17dp"
         android:onClick="Click3"
         android:text="ลงชื่อเข้าใช้"/>

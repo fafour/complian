@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fillViewport="true"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingAddDocter1Activity"
     tools:showIn="@layout/activity_scrolling_add_docter1">
@@ -68,10 +69,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
+                android:textColor="@android:color/white"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:id="@+id/txtHospital"
-                android:textColor="@android:color/black"
                 android:hint="กรุณาระบุโรงพยาบาล">
                 <requestFocus />
             </EditText>
@@ -91,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="selectData"
-            android:text="ชื่อผู้ถูกร้อง"/>
+            android:text="เพิ่มชื่อผู้ถูกร้อง"/>
 
         <ListView
             android:layout_width="match_parent"

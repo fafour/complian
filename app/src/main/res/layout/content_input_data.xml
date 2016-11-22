@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.InputDataActivity"
     tools:showIn="@layout/activity_input_data">
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtTittle1"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
             android:hint="กรุณากรอกคำขึ้นต้นชื่อ"/>
@@ -116,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/name1"
+            android:textColor="@android:color/white"
             android:textSize="15dp"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
@@ -162,6 +165,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/surname1"
+            android:textColor="@android:color/white"
             android:textSize="15dp"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
@@ -209,6 +213,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/idcode1"
         android:textSize="15dp"
+        android:textColor="@android:color/white"
         android:inputType=
             "textCapSentences|textAutoCorrect"
         android:hint="กรุณากรอกเลขที่รับเรื่องของท่าน"/>

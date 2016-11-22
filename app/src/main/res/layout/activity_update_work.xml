@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.UpdateWorkActivity"
     tools:showIn="@layout/activity_update_work">
@@ -41,8 +42,8 @@
 
     </LinearLayout>
     <Spinner android:id="@+id/spinner"
-        android:layout_width="310dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
     <TextView
