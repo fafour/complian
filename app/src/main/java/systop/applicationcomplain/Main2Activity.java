@@ -12,14 +12,17 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
+    TextView txtMainApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        
+        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
+
 
         clearCache.deleteCache(this);
 
