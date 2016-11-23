@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textColor="@android:color/black"
             android:text="คำขึ้นต้นชื่อ"/>
         <TextView
@@ -68,10 +68,10 @@
             android:text="  "/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/txtTittle1"
             android:textSize="15dp"
-            android:textColor="@android:color/white"
+            android:background="@drawable/edittext_bg"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
             android:hint="กรุณากรอกคำขึ้นต้นชื่อ"/>
@@ -94,7 +94,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textColor="@android:color/black"
             android:text="ชื่อ"/>
         <TextView
@@ -116,9 +116,9 @@
             android:text="  "/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/name1"
-            android:textColor="@android:color/white"
+            android:background="@drawable/edittext_bg"
             android:textSize="15dp"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
@@ -141,7 +141,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textColor="@android:color/black"
             android:text="นามสกุล"/>
         <TextView
@@ -163,9 +163,9 @@
             android:text="  "/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/surname1"
-            android:textColor="@android:color/white"
+            android:background="@drawable/edittext_bg"
             android:textSize="15dp"
             android:inputType=
                 "textCapSentences|textAutoCorrect"
@@ -189,7 +189,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
+        android:textSize="18dp"
         android:textColor="@android:color/black"
         android:text="เลขที่รับเรื่องของท่าน"/>
     <TextView
@@ -205,15 +205,20 @@
         android:textColor="@android:color/black"
         android:text=":"/>
     </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="5dp"
+        android:textColor="@android:color/black"
+        />
 
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/idcode1"
         android:textSize="15dp"
-        android:textColor="@android:color/white"
+        android:background="@drawable/edittext_bg"
         android:inputType=
             "textCapSentences|textAutoCorrect"
         android:hint="กรุณากรอกเลขที่รับเรื่องของท่าน"/>
@@ -234,24 +239,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="yes"
+        android:background="@drawable/design_button"
         android:text="กรุณายืนยันข้อมูลของท่านก่อนดูข้อมูลเรื่องร้องเรียน"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="  "/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="  "/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="  "/>
 
 
 

@@ -124,13 +124,16 @@ public class InputIdPeopleActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                next();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                next();
+//            }
+//        });
+    }
+    public void Click3(View view){
+        next();
     }
     public void  next(){
         int sum1 = 0;

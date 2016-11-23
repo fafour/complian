@@ -258,13 +258,13 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
                     String txtPostalCode = getIntent().getStringExtra("PostalCode");
                     final String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
-                    final String Adrres = "บ้านเลขที่ :"+txtHouseNo+"\n"+
-                            "ซอย/หมู่บ้าน :"+txtLane+"\n"+
-                            "ถนน :"+txtRoad+"\n"+
-                            "ตำบล/แขวง :"+txtSubDistrict+"\n"+
-                            "อำเภอ/เขต :"+txtDistrict+"\n"+
-                            "จังหวัด :"+txtProvince+"\n"+
-                            "ไปรษณีย์ :"+txtPostalCode;
+                    final String Adrres = "บ้านเลขที่ #:#"+txtHouseNo+"\n"+
+                            "ซอย/หมู่บ้าน #:#"+txtLane+"\n"+
+                            "ถนน #:#"+txtRoad+"\n"+
+                            "ตำบล/แขวง #:#"+txtSubDistrict+"\n"+
+                            "อำเภอ/เขต #:#"+txtDistrict+"\n"+
+                            "จังหวัด #:#"+txtProvince+"\n"+
+                            "ไปรษณีย์ #:#"+txtPostalCode;
 
                     final String txtDoctorName = getIntent().getStringExtra("DoctorName");
                     final String txtHospitalName = getIntent().getStringExtra("HospitalName");

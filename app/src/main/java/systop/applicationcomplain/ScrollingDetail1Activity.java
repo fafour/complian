@@ -252,13 +252,13 @@ public class ScrollingDetail1Activity extends AppCompatActivity {
                     String txtPostalCode = getIntent().getStringExtra("PostalCode");
                     final String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
-                    final String Adrres = "บ้านเลขที่ :"+txtHouseNo+"\n"+
-                            "ซอย/หมู่บ้าน :"+txtLane+"\n"+
-                            "ถนน :"+txtRoad+"\n"+
-                            "ตำบล/แขวง :"+txtSubDistrict+"\n"+
-                            "อำเภอ/เขต :"+txtDistrict+"\n"+
-                            "จังหวัด :"+txtProvince+"\n"+
-                            "ไปรษณีย์ :"+txtPostalCode;
+                    final String Adrres = "บ้านเลขที่ #:#"+txtHouseNo+"\n"+
+                            "ซอย/หมู่บ้าน #:#"+txtLane+"\n"+
+                            "ถนน #:#"+txtRoad+"\n"+
+                            "ตำบล/แขวง #:#"+txtSubDistrict+"\n"+
+                            "อำเภอ/เขต #:#"+txtDistrict+"\n"+
+                            "จังหวัด #:#"+txtProvince+"\n"+
+                            "ไปรษณีย์ #:#"+txtPostalCode;
 
                     final String txtDoctorName = getIntent().getStringExtra("DoctorName");
                     final String txtHospitalName = getIntent().getStringExtra("HospitalName");
@@ -280,8 +280,8 @@ public class ScrollingDetail1Activity extends AppCompatActivity {
                     final String txtDetail = data;
                     final String txtStatus = "กำลังดำเนินงาน";
                     final String txtResponsiblePerson = "ไม่มีผู้รับผิดชอบ";
-                    final String txtRecipientComplaints = "ไม่มผู้รับเรื่อง";
-                    final String txtIdCode = "ETMC"+ft1.format(dNow1)+ String.format("%05d", x);
+                    final String txtRecipientComplaints = "ไม่มีผู้รับเรื่อง";
+                    final String txtIdCode = "eTMCm"+ft1.format(dNow1)+ String.format("%05d", x);
 
                     String Url = localhost.url+"insert.php";
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,

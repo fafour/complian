@@ -209,7 +209,7 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         re.setText(Relationship);
         phone.setText(Phone);
         txtemail.setText(Email);
-        add.setText(Adress);
+        //add.setText(Adress);
         atdat.setText(AtDay);
         date.setText(Day);
         de.setText(Detail);
@@ -219,6 +219,50 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         phonehome.setText(PhoneHome);
         hos.setText(HospitalName);
         doctor.setText(DocterName);
+
+        String[] parts = Adress.split("\n");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+        String part4 = parts[3];
+        String part5 = parts[4];
+        String part6 = parts[5];
+        String part7 = parts[6];
+
+        String[] HouseNo1 = part1.split("#:#");
+        String dataAdress = HouseNo1[1];
+
+        String dataAdress1 = "";
+        if(!part2.equals("ซอย/หมู่บ้าน #:#")) {
+            String[] Lane1 = part2.split("#:#");
+            dataAdress1 = Lane1[1];
+        }else {
+
+        }
+
+
+        if(!part3.equals("ถนน #:#")){
+            String[] Road1 = part3.split("#:#");
+            String dataAdress2 = Road1[1];
+        }else {
+
+        }
+
+        String[] SubDistrict1 = part4.split("#:#");
+        String dataAdress3 = SubDistrict1[1];
+
+        String[] District1 = part5.split("#:#");
+        String dataAdress4 = District1[1];
+
+        String[] Province1 = part6.split("#:#");
+        String dataAdress5 = Province1[1];
+
+        if(!part7.equals("ไปรษณีย์ #:#")) {
+            String[] PostalCode1 = part7.split("#:#");
+            String dataAdress6 = PostalCode1[1];
+        }else {
+
+        }
 
         String Url1 = localhost.url+"pic_Get.php";
         StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Url1,

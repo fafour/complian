@@ -46,11 +46,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:textSize="10dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/design_button"
         android:text="ค้นหาแพทย์"
         android:id="@+id/button1"
         android:onClick="click1"
@@ -59,11 +61,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:textSize="10dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/design_button"
         android:text="แจ้งเรื่องร้องเรียน"
         android:id="@+id/button2"
         android:onClick="click2"
@@ -72,11 +76,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:textSize="10dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/design_button"
         android:text="ดูรายละเอียดการร้องเรียน"
         android:id="@+id/button3"
         android:onClick="click3"
@@ -85,10 +91,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:textSize="10dp"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/design_button"
         android:text="เปลี่ยนรหัสผ่าน"
         android:id="@+id/button4"
         android:onClick="click4"

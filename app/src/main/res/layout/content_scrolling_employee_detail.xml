@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="23dp"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="วันที่เกิดเหตุ"/>
             <TextView
@@ -69,9 +69,9 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:enabled="false"
                 android:id="@+id/editText1"
                 android:layout_weight="1" />
@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ถึง :"/>
             <TextView
@@ -120,9 +120,9 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:enabled="false"
                 android:id="@+id/editText2"
                 android:layout_weight="1" />
@@ -157,13 +157,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="หัวข้อเรื่อง"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/holo_red_light"
                 android:text="* "/>
             <TextView
@@ -180,9 +180,9 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:id="@+id/txtMain"
@@ -205,7 +205,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="พฤติกรรมโดยย่อที่ต้องการร้องเรียน"/>
             <TextView
@@ -235,6 +235,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="enterData"
+            android:textSize="18dp"
+            android:background="@drawable/design_button"
             android:text="เพิ่มข้อมูล"/>
 
         <TextView
@@ -248,6 +250,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="yes"
+            android:textSize="18dp"
+            android:background="@drawable/design_button"
             android:text="ยืนยันการกรอกข้อมูล"/>
 
 

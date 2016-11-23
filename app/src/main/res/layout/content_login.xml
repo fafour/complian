@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:text="" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -46,7 +47,7 @@
         <EditText
             android:layout_width="match_parent"
             android:hint="กรอกชื่อผู้ใช้งาน"
-            android:textColor="@android:color/white"
+            android:background="@drawable/edittext_bg"
             android:drawableLeft="@drawable/user_icon"
             android:drawablePadding="8dp"
             android:textSize="17dp"
@@ -55,6 +56,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/username"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +80,7 @@
             android:layout_width="match_parent"
             android:hint="กรอกรหัส"
             android:textSize="17dp"
-            android:textColor="@android:color/white"
+            android:background="@drawable/edittext_bg"
             android:drawablePadding="8dp"
             android:drawableLeft="@drawable/log_key"
             android:inputType="textPassword|textCapSentences|textAutoCorrect"
@@ -88,7 +94,8 @@
 
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content"
         android:background="@drawable/design_button"

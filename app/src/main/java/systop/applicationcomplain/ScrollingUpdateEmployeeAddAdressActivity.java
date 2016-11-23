@@ -237,13 +237,13 @@ public class ScrollingUpdateEmployeeAddAdressActivity extends AppCompatActivity 
         String part6 = parts[5];
         String part7 = parts[6];
 
-        String[] HouseNo1 = part1.split(":");
+        String[] HouseNo1 = part1.split("#:#");
         String dataAdress = HouseNo1[1];
         HouseNo.setText(dataAdress);
 
 
-        if(!part2.equals("ซอย/หมู่บ้าน :")) {
-            String[] Lane1 = part2.split(":");
+        if(!part2.equals("ซอย/หมู่บ้าน #:#")) {
+            String[] Lane1 = part2.split("#:#");
             String dataAdress1 = Lane1[1];
             Lane.setText(dataAdress1);
         }else {
@@ -251,29 +251,29 @@ public class ScrollingUpdateEmployeeAddAdressActivity extends AppCompatActivity 
         }
 
 
-        if(!part3.equals("ถนน :")){
-            String[] Road1 = part3.split(":");
+        if(!part3.equals("ถนน #:#")){
+            String[] Road1 = part3.split("#:#");
             String dataAdress2 = Road1[1];
             Road.setText(dataAdress2);
         }else {
             Road.setText("");
         }
 
-        String[] SubDistrict1 = part4.split(":");
+        String[] SubDistrict1 = part4.split("#:#");
         String dataAdress3 = SubDistrict1[1];
         SubDistrict.setText(dataAdress3);
 
-        String[] District1 = part5.split(":");
+        String[] District1 = part5.split("#:#");
         String dataAdress4 = District1[1];
         District.setText(dataAdress4);
 
-        String[] Province1 = part6.split(":");
+        String[] Province1 = part6.split("#:#");
         String dataAdress5 = Province1[1];
         spinner.setSelection(dataAdapter.getPosition(dataAdress5));
 
 
-        if(!part7.equals("ไปรษณีย์ :")) {
-            String[] PostalCode1 = part7.split(":");
+        if(!part7.equals("ไปรษณีย์ #:#")) {
+            String[] PostalCode1 = part7.split("#:#");
             String dataAdress6 = PostalCode1[1];
             PostalCode.setText(dataAdress6);
         }else {

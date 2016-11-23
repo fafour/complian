@@ -32,10 +32,12 @@
         android:layout_height="wrap_content"
         android:text="" />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn1"
+        android:layout_gravity="center"
         android:drawableLeft="@drawable/people"
+        android:background="@drawable/design_button"
         android:text="สำหรับประชาชน"
         android:textSize="20dp"
         android:onClick="Click1"/>
@@ -44,9 +46,11 @@
         android:layout_height="wrap_content"
         android:text="" />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="สำหรับเจ้าหน้าที่"
+        android:layout_gravity="center"
+        android:background="@drawable/design_button"
         android:drawableLeft="@drawable/admin_menu"
         android:textSize="20dp"
         android:id="@+id/btn2"

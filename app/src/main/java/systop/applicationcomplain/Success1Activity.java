@@ -101,7 +101,7 @@ public class Success1Activity extends AppCompatActivity {
                 dialog1.setCancelable(true);
                 dialog1.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String txtIdpeople = getIntent().getStringExtra("Idpeople");
+                        String txtIdpeople = getIntent().getStringExtra("IdPeople");
                         Intent intent = new Intent(getApplicationContext(), IndexActivity.class);
                         intent.putExtra("Idpeople", txtIdpeople);
                         startActivity(intent);
@@ -446,7 +446,7 @@ public class Success1Activity extends AppCompatActivity {
 
     }
     public void Click1(View view){
-        String txtIdpeople = getIntent().getStringExtra("Idpeople");
+        String txtIdpeople = getIntent().getStringExtra("IdPeople");
         Intent intent = new Intent(getApplicationContext(), IndexActivity.class);
         intent.putExtra("Idpeople", txtIdpeople);
         startActivity(intent);
@@ -458,7 +458,7 @@ public class Success1Activity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                String txtIdpeople = getIntent().getStringExtra("Idpeople");
+                String txtIdpeople = getIntent().getStringExtra("IdPeople");
                 Intent intent = new Intent(getApplicationContext(), IndexActivity.class);
                 intent.putExtra("Idpeople", txtIdpeople);
                 startActivity(intent);

@@ -179,7 +179,7 @@ public class ScrollingData1Activity extends AppCompatActivity {
         re.setText(Relationship);
         phone.setText(Phone);
         txtemail.setText(Email);
-        add.setText(Adress);
+        //add.setText(Adress);
         atdat.setText(AtDay);
         date.setText(Day);
         de.setText(Detail);

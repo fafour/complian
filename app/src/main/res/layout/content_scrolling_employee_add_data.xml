@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="23dp"
             android:textColor="@android:color/black"
             />
 
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="คำนำหน้าชื่อ"/>
             <TextView
@@ -75,9 +75,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/titlename"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -91,7 +91,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ชื่อ"/>
             <TextView
@@ -125,9 +125,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/name"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -140,7 +140,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="นามสกุล"/>
             <TextView
@@ -174,9 +174,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/surname"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:textSize="15dp"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
@@ -190,7 +190,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -202,7 +202,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="เกี่ยวข้องกับผู้เสียหาย :"/>
             <TextView
@@ -212,9 +212,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/relationship"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณากรอกความสัมพันธ์"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
@@ -228,7 +228,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -240,7 +240,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="อีเมล์"/>
             <TextView
@@ -262,10 +262,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/email"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType="textWebEmailAddress"
                 android:hint="กรุณากรอกอีเมล์">
                 <requestFocus />
@@ -276,7 +276,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -288,7 +288,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="เบอร์ติดต่อ :"/>
             <TextView
@@ -310,12 +310,12 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/phone"
                 android:textSize="15dp"
                 android:inputType="numberSigned"
                 android:maxLength="10"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณาเบอร์โทรศัพท์">
                 <requestFocus />
             </EditText>

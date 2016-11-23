@@ -26,20 +26,20 @@
             android:textSize="20dp"
             android:textColor="@android:color/black" />
 
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="23dp"
             android:textStyle="bold"
             android:text="ข้อมูลการร้องเรียน"
             android:layout_gravity="center"
             android:textColor="@android:color/black"
             />
-
-
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="5dp"
+            android:textColor="@android:color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="โรงพยาบาล :"/>
             <TextView
@@ -60,9 +60,9 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:id="@+id/txtHospital"
@@ -77,7 +77,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="5dp"
             android:textColor="@android:color/black"
             />
 
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ชื่อ-สกุล(ชื่อผู้ถูกร้อง)"/>
             <TextView
@@ -107,30 +107,47 @@
                 android:textColor="@android:color/black"
                 android:text=":"/>
 
-
-
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="5dp"
+            android:textColor="@android:color/black"
+            />
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView2"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_bg"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:textColor="@android:color/white"
             android:textSize="15dp"
             android:ems="10"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="5dp"
+            android:textColor="@android:color/black"
+            />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="selectData"
+            android:textSize="18dp"
+            android:background="@drawable/design_button"
             android:text="เพิ่มชื่อผู้ถูกร้อง"/>
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="5dp"
+            android:textColor="@android:color/black"
+            />
 
         <ListView
             android:layout_width="fill_parent"
