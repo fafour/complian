@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     tools:showIn="@layout/activity_success2"
     tools:context="systop.applicationcomplain.Success2Activity">
 
@@ -28,18 +27,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="" />
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@android:color/black"
-        android:text="รหัสคือ  :" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@android:color/white"
-        android:id="@+id/txtID" />
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:text="รหัสคือ  :" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:id="@+id/txtID" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,8 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="เสร็จสิ้น"
-        android:background="@drawable/design_button"
+        android:background="@drawable/icn_con"
         android:textSize="20dp"
         android:onClick="Click1"/>
 

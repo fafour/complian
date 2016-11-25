@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -46,6 +47,8 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Scrolling1Activity extends AppCompatActivity {
     EditText idpeople,titlename,name,surname,relationship,email,phone;
     String txtTitleName,txtName,txtSurname,txtRelationship,txtEmail,txtPhone;
@@ -59,11 +62,12 @@ public class Scrolling1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling1);
         clearCache.deleteCache(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +213,7 @@ public class Scrolling1Activity extends AppCompatActivity {
                 if (!txtTitleName.isEmpty() &&
                                 !txtName.isEmpty() &&
                                 !txtSurname.isEmpty() &&
-                                phone.length() == 10 &&
+                                !txtPhone.isEmpty() &&
                                 txtEmail.matches(emailRegex)
                         ){
                     Intent intent = new Intent(getApplicationContext(), ScrollingAdress1Activity.class);
@@ -245,7 +249,7 @@ public class Scrolling1Activity extends AppCompatActivity {
                     }
 
 
-                    if ( phone.length() != 10 ) {
+                    if ( txtPhone.isEmpty() ) {
                         phone.setError("กรุณากรอกเบอร์โทรศัพท์");
                     }else {
                         phone.setError(null);
@@ -322,5 +326,9 @@ public class Scrolling1Activity extends AppCompatActivity {
                         sourceBitmap.getHeight()),
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.UploadImageIdPeopleActivity"
     tools:showIn="@layout/activity_upload_image_id_people"
@@ -61,9 +60,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="บันทึกรูปภาพ"
-        android:textSize="20dp"
-        android:background="@drawable/design_button"
+        android:background="@drawable/icn_ok"
         android:onClick="upload"
         android:id="@+id/buttonUpload" />
 

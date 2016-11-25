@@ -1,6 +1,7 @@
 package systop.applicationcomplain;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,6 +18,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CheckComplain1Activity extends AppCompatActivity {
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -144,5 +147,9 @@ public class CheckComplain1Activity extends AppCompatActivity {
             }
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

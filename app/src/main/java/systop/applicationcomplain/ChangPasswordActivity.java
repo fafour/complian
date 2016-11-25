@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -50,6 +51,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ChangPasswordActivity extends AppCompatActivity {
     EditText oldpass,newpass,again;
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -61,11 +64,13 @@ public class ChangPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chang_password);
         clearCache.deleteCache(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -337,6 +342,10 @@ public class ChangPasswordActivity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

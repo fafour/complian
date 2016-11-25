@@ -10,6 +10,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -20,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,10 +42,13 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class IndexActivity extends AppCompatActivity {
     private ImageView imageView;
     String image_data ="";
     ProgressDialog progressDialog ;
+    TextView txt ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class IndexActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +69,10 @@ public class IndexActivity extends AppCompatActivity {
         });
 
         clearCache.deleteCache(this);
+
+        txt = (TextView) findViewById(R.id.txt);
+        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/datafont.ttf");
+        txt.setTypeface(face);
 
         if (!isNetworkConnected() && !isWifiConnected() ) {
 
@@ -208,6 +219,10 @@ public class IndexActivity extends AppCompatActivity {
                         sourceBitmap.getHeight()),
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 

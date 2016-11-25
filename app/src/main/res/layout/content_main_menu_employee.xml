@@ -9,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.MainMenuEmployeeActivity"
     tools:showIn="@layout/activity_main_menu_employee">
@@ -52,23 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/design_button"
-        android:text="ค้นหาแพทย์"
-        android:id="@+id/button1"
-        android:onClick="click1"
-        android:textSize="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/design_button"
-        android:text="แจ้งเรื่องร้องเรียน"
+        android:background="@drawable/icn_alert"
         android:id="@+id/button2"
         android:onClick="click2"
         android:textSize="15dp"/>
@@ -82,8 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/design_button"
-        android:text="ดูรายละเอียดการร้องเรียน"
+        android:background="@drawable/icn_seedetail"
         android:id="@+id/button3"
         android:onClick="click3"
         android:textSize="15dp"/>
@@ -96,8 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/design_button"
-        android:text="เปลี่ยนรหัสผ่าน"
+        android:background="@drawable/icn_password"
         android:id="@+id/button4"
         android:onClick="click4"
         android:textSize="15dp"/>

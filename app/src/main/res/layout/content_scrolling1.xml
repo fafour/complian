@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.Scrolling1Activity"
     tools:showIn="@layout/activity_scrolling1">
@@ -51,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="คำนำหน้าชื่อ"/>
             <TextView
@@ -73,10 +72,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/titlename"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกคำนำหน้า">
@@ -89,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -101,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ชื่อ"/>
             <TextView
@@ -123,10 +122,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/name"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกชื่อ">
@@ -138,7 +137,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -174,9 +173,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/surname"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -190,7 +189,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -202,7 +201,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textColor="@android:color/black"
@@ -214,10 +213,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/relationship"
                 android:hint="กรุณากรอกความสัมพันธ์"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp" >
@@ -230,7 +229,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -242,7 +241,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="อีเมล์"/>
             <TextView
@@ -264,11 +263,11 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/email"
                 android:textSize="15dp"
                 android:inputType="textWebEmailAddress"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณากรอกอีเมล์">
                 <requestFocus />
             </EditText>
@@ -278,7 +277,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -312,12 +311,12 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/phone"
                 android:textSize="15dp"
-                android:inputType="numberSigned"
-                android:maxLength="10"
-                android:textColor="@android:color/white"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณากรอกเบอร์โทรศัพท์">
                 <requestFocus />
             </EditText>

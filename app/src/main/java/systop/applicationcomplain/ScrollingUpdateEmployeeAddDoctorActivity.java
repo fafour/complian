@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -54,6 +55,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
     EditText txtHospital;
     ListView listview;
@@ -75,8 +78,10 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +146,9 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
                             Toast.makeText(getApplicationContext(), "ไม่สามารถทำงานได้ ", Toast.LENGTH_LONG).show();
                         }
                         //Toast.makeText(getApplicationContext(),image_data, Toast.LENGTH_SHORT).show();
-                        new DownloadImage().execute(image_data);
+                        if( !image_data.equals("null")) {
+                            new DownloadImage().execute(image_data);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -583,5 +590,9 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
                         sourceBitmap.getHeight()),
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

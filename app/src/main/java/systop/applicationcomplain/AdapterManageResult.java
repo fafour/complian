@@ -128,18 +128,8 @@ public class AdapterManageResult extends RecyclerView.Adapter<RecyclerView.ViewH
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case 0:
-                            current=data.get(0);
-                            new AsyncFetch1().execute(current.UsernameEmp);
-                            data.remove(0);
-                            notifyItemRemoved(0);
-                            notifyItemRangeChanged(0, data.size());
-
-                            CharSequence text = "ทำรายการเสร็จสิ้น";
-                            int duration = Toast.LENGTH_SHORT;
-
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-                            ((Activity)context).finish();
+                            current=data.get(position1);
+                            new AsyncFetch2().execute(current.UsernameEmp, String.valueOf(position1));
                             break;
                         case 1:
                             current=data.get(0);
@@ -262,6 +252,131 @@ public class AdapterManageResult extends RecyclerView.Adapter<RecyclerView.ViewH
         @Override
         protected void onPostExecute(String result) {
 
+        }
+
+    }
+    private class AsyncFetch2 extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+        String name ="";
+        String positionData = "" ;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url+"employeeShowData1.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", params[0]);
+                String query = builder.build().getEncodedQuery();
+                name = params[0];
+                positionData = params[1];
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("no rows")){
+                new AsyncFetch1().execute(name);
+
+                int MyNumber = Integer.parseInt(positionData);
+
+                data.remove(MyNumber);
+                notifyItemRemoved(MyNumber);
+                notifyItemRangeChanged(MyNumber, data.size());
+
+                CharSequence text = "ทำรายการเสร็จสิ้น";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                ((Activity)context).finish();
+
+            }else {
+                AlertDialog.Builder dialogs = new AlertDialog.Builder(context);
+                dialogs.setTitle("คำเตือน");
+                dialogs.setMessage("ไม่สามารถลบได้ กรุณาตรวจสอบข้อมูลเจ้าหน้าที่ดูอีกรอบ");
+                dialogs.setCancelable(true);
+                dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialogs.show();
+            }
         }
 
     }

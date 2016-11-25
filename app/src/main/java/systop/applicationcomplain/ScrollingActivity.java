@@ -10,6 +10,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -23,6 +25,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,23 +45,44 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ScrollingActivity extends AppCompatActivity {
     EditText idpeople,titlename,name,surname,relationship,email,phone;
     String txtTitleName,txtName,txtSurname,txtRelationship,txtEmail,txtPhone;
     private ImageView imageView;
     String image_data ="";
     ProgressDialog progressDialog ;
+    TextView txt1,txt2,txt3,txt4,txt5,txt6,txt7;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         clearCache.deleteCache(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setLogo(R.drawable.logo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
+
+        txt1 = (TextView) findViewById(R.id.txt1);
+        txt2 = (TextView) findViewById(R.id.txt2);
+        txt3 = (TextView) findViewById(R.id.txt3);
+        txt4 = (TextView) findViewById(R.id.txt4);
+        txt5 = (TextView) findViewById(R.id.txt5);
+        txt6 = (TextView) findViewById(R.id.txt6);
+        txt7 = (TextView) findViewById(R.id.txt7);
+
+        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/datafont.ttf");
+        txt1.setTypeface(face);
+        txt2.setTypeface(face);
+        txt3.setTypeface(face);
+        txt4.setTypeface(face);
+        txt5.setTypeface(face);
+        txt6.setTypeface(face);
+        txt7.setTypeface(face);
+
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -88,6 +112,13 @@ public class ScrollingActivity extends AppCompatActivity {
         relationship = (EditText) findViewById(R.id.relationship);
         email = (EditText) findViewById(R.id.email);
         phone = (EditText) findViewById(R.id.phone);
+
+        titlename.setTypeface(face);
+        name.setTypeface(face);
+        surname.setTypeface(face);
+        relationship.setTypeface(face);
+        email.setTypeface(face);
+        phone.setTypeface(face);
 
         txtTitleName = titlename.getText().toString();
         txtName = name.getText().toString();
@@ -204,7 +235,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 if (!txtTitleName.isEmpty() &&
                         !txtName.isEmpty() &&
                         !txtSurname.isEmpty() &&
-                        phone.length() == 10 &&
+                        !txtPhone.isEmpty() &&
                         txtEmail.matches(emailRegex)
                         ){
                     Intent intent = new Intent(getApplicationContext(), ScrollingAdressActivity.class);
@@ -240,7 +271,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     }
 
 
-                    if ( phone.length() != 10 ) {
+                    if ( txtPhone.isEmpty() ) {
                         phone.setError("กรุณากรอกเบอร์โทรศัพท์");
                     }else {
                         phone.setError(null);
@@ -313,5 +344,9 @@ public class ScrollingActivity extends AppCompatActivity {
                         sourceBitmap.getHeight()),
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

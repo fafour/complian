@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingEmployeeDetailActivity"
     tools:showIn="@layout/activity_scrolling_employee_detail">
@@ -236,8 +235,7 @@
             android:layout_gravity="center"
             android:onClick="enterData"
             android:textSize="18dp"
-            android:background="@drawable/design_button"
-            android:text="เพิ่มข้อมูล"/>
+            android:background="@drawable/icn_fag_add" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -251,15 +249,9 @@
             android:layout_gravity="center"
             android:onClick="yes"
             android:textSize="18dp"
-            android:background="@drawable/design_button"
-            android:text="ยืนยันการกรอกข้อมูล"/>
+            android:background="@drawable/icn_fag_ok" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textColor="@android:color/black" />
 
     </LinearLayout>
 

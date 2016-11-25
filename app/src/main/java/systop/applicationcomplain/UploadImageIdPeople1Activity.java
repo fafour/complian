@@ -3,11 +3,13 @@ package systop.applicationcomplain;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,6 +40,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class UploadImageIdPeople1Activity extends AppCompatActivity {
     private static final int PICK_FROM_CAMERA = 1;
@@ -70,6 +74,10 @@ public class UploadImageIdPeople1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_upload_image_id_people1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
         clearCache.deleteCache(this);
         byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -391,6 +399,10 @@ public class UploadImageIdPeople1Activity extends AppCompatActivity {
             return stringBuilder.toString();
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

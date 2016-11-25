@@ -34,6 +34,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MenuAdminActivity extends AppCompatActivity {
     TextView txtUserName;
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -582,6 +584,10 @@ public class MenuAdminActivity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

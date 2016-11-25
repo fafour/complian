@@ -9,14 +9,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.UpdateLevelEmployeeActivity"
     tools:showIn="@layout/activity_update_level_employee">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"/>
+        android:textSize="18dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:text="เลือกระดับ : "
-            android:textSize="15dp"/>
+            android:textSize="18dp"/>
 
         <Spinner android:id="@+id/spinner"
             android:layout_width="match_parent"
@@ -54,7 +53,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ยืนยัน"
+        android:background="@drawable/icn_ok"
         android:onClick="click1"
         android:textSize="15dp"/>
 

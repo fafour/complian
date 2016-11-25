@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingDetail1Activity"
     tools:showIn="@layout/activity_scrolling_detail1">
@@ -21,13 +20,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="18dp"
             android:textColor="@android:color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="23dp"
             android:textStyle="bold"
             android:text="รายละเอียดการฟ้องร้อง"
             android:layout_gravity="center"
@@ -36,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black" />
 
         <LinearLayout
@@ -47,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="วันที่เกิดเหตุ"/>
             <TextView
@@ -70,10 +69,10 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:enabled="false"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:id="@+id/editText1"
                 android:layout_weight="1" />
 
@@ -98,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black" />
 
         <LinearLayout
@@ -109,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ถึง :"/>
             <TextView
@@ -121,10 +120,10 @@
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:enabled="false"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:id="@+id/editText2"
                 android:layout_weight="1" />
 
@@ -148,7 +147,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="หัวข้อเรื่อง"/>
             <TextView
@@ -181,9 +180,9 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:id="@+id/txtMain"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
@@ -195,7 +194,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black" />
 
         <LinearLayout
@@ -206,7 +205,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="พฤติกรรมโดยย่อที่ต้องการร้องเรียน"/>
             <TextView
@@ -226,7 +225,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="7dp"
             android:textColor="@android:color/black" />
 
         <Button
@@ -234,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="enterData"
-            android:text="เพิ่มข้อมูล"/>
+            android:background="@drawable/icn_fag_add"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -253,14 +252,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="yes"
-            android:text="ยืนยันการกรอกข้อมูล"/>
+            android:background="@drawable/icn_fag_ok"/>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textColor="@android:color/black" />
 
 
     </LinearLayout>

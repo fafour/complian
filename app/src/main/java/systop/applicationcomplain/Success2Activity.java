@@ -1,11 +1,13 @@
 package systop.applicationcomplain;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -59,6 +61,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Success2Activity extends AppCompatActivity {
     TextView txtID ;
     String TittleName = "";
@@ -81,11 +85,12 @@ public class Success2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,10 +207,10 @@ public class Success2Activity extends AppCompatActivity {
 
 
 
-            Font font = FontFactory.getFont("assets/fonts/th.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            Font font = FontFactory.getFont("assets/fonts/thnew.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             font.setSize(16);
 
-            Font font1 = FontFactory.getFont("assets/fonts/th.ttf", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+            Font font1 = FontFactory.getFont("assets/fonts/thnew.ttf", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
             font1.setSize(24);
             font1.setStyle("bold");
 
@@ -269,7 +274,7 @@ public class Success2Activity extends AppCompatActivity {
             }
 
             ColumnText column3 = new ColumnText(docWriter.getDirectContent());
-            column3.setSimpleColumn(390, 740, 569, 36);
+            column3.setSimpleColumn(410, 740, 569, 36);
             column3.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
             column3.addElement(new Paragraph("วันที่ "+part1+" "+mount+" พ.ศ. "+year, font));
             column3.go();
@@ -295,12 +300,12 @@ public class Success2Activity extends AppCompatActivity {
             String data5 = adress[5];
             String data6 = adress[6];
 
-            String[] HouseNo1 = data.split(":");
+            String[] HouseNo1 = data.split("#:#");
             String HouseNo = HouseNo1[1];
 
             String Lane ="";
-            if(!data1.equals("ซอย/หมู่บ้าน :")) {
-                String[] Lane1 = data1.split(":");
+            if(!data1.equals("ซอย/หมู่บ้าน #:#")) {
+                String[] Lane1 = data1.split("#:#");
                 Lane = Lane1[1];
             }else {
                 Lane = "                     ";
@@ -308,26 +313,26 @@ public class Success2Activity extends AppCompatActivity {
             }
 
             String Road = "";
-            if(!data2.equals("ถนน :")){
-                String[] Road1 = data2.split(":");
+            if(!data2.equals("ถนน #:#")){
+                String[] Road1 = data2.split("#:#");
                 Road = Road1[1];
             }else {
                 Road ="                   ";
             }
 
 
-            String[] SubDistrict1 = data3.split(":");
+            String[] SubDistrict1 = data3.split("#:#");
             String SubDistrict = SubDistrict1[1];
 
-            String[] District1 = data4.split(":");
+            String[] District1 = data4.split("#:#");
             String District = District1[1];
 
-            String[] Province1 = data5.split(":");
+            String[] Province1 = data5.split("#:#");
             String Province = Province1[1];
 
             String PostalCode ="";
-            if(!data6.equals("ไปรษณีย์ :")) {
-                String[] PostalCode1 = data6.split(":");
+            if(!data6.equals("ไปรษณีย์ #:#")) {
+                String[] PostalCode1 = data6.split("#:#");
                 PostalCode = PostalCode1[1];
             }else {
                 PostalCode ="                              ";
@@ -616,6 +621,10 @@ public class Success2Activity extends AppCompatActivity {
             image = result;
 
         }
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 

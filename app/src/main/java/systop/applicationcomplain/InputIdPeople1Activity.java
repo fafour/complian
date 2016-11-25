@@ -1,8 +1,11 @@
 package systop.applicationcomplain;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,11 +15,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static java.lang.Float.parseFloat;
 
 public class InputIdPeople1Activity extends AppCompatActivity {
     EditText editText1,editText2,editText3,editText4,editText5;
+    TextView txt1,txt2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,8 @@ public class InputIdPeople1Activity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,12 +44,25 @@ public class InputIdPeople1Activity extends AppCompatActivity {
         });
         clearCache.deleteCache(this);
 
+        txt1 = (TextView) findViewById(R.id.txt1);
+        txt2 = (TextView) findViewById(R.id.txt2);
+
+        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/datafont.ttf");
+        txt1.setTypeface(face);
+        txt2.setTypeface(face);
+
 
         editText1 = (EditText) findViewById(R.id.editText1);
         editText2 = (EditText) findViewById(R.id.editText2);
         editText3 = (EditText) findViewById(R.id.editText3);
         editText4 = (EditText) findViewById(R.id.editText4);
         editText5 = (EditText) findViewById(R.id.editText5);
+
+        editText1.setTypeface(face);
+        editText2.setTypeface(face);
+        editText3.setTypeface(face);
+        editText4.setTypeface(face);
+        editText5.setTypeface(face);
 
         editText1.addTextChangedListener(new TextWatcher() {
 
@@ -198,6 +220,10 @@ public class InputIdPeople1Activity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

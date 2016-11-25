@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.IndexActivity"
@@ -22,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:id="@+id/txt"
         android:layout_gravity="center"
         android:textColor="@android:color/black"
         android:textStyle="bold"
@@ -34,9 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="แจ้งเรื่องร้องเรียน"
         android:textSize="15dp"
-        android:background="@drawable/design_button"
+        android:background="@drawable/icn_alert"
         android:onClick="Click1"/>
     <TextView
         android:layout_width="wrap_content"
@@ -45,10 +44,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ดูข้อมูลเรื่องร้องเรียน"
         android:textSize="15dp"
         android:layout_gravity="center"
-        android:background="@drawable/design_button"
+        android:background="@drawable/icn_fag"
         android:onClick="Click2"/>
 
 </LinearLayout>

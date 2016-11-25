@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -60,6 +61,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ScrollingDetailActivity extends AppCompatActivity {
     EditText txtMain;
     EditText editText1,editText2;
@@ -83,11 +86,12 @@ public class ScrollingDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling_detail);
         clearCache.deleteCache(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,7 +255,7 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                     String txtPostalCode = getIntent().getStringExtra("PostalCode");
                     final String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
-                    final String Adrres = "บ้านเลขที่ :"+txtHouseNo+"\n"+
+                    final String Adrres = "บ้านเลขที่ #:#"+txtHouseNo+"\n"+
                             "ซอย/หมู่บ้าน #:#"+txtLane+"\n"+
                             "ถนน #:#"+txtRoad+"\n"+
                             "ตำบล/แขวง #:#"+txtSubDistrict+"\n"+
@@ -563,5 +567,10 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
     }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
+
 
 }

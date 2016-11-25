@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.ActionBar;
@@ -16,25 +17,19 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Main2Activity extends AppCompatActivity {
-//    TextView txtMainApp;
-//    Button btn1,btn2;
+    TextView txtMainApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-//        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
-//        btn1 = (Button) findViewById(R.id.btn1);
-//        btn2 = (Button) findViewById(R.id.btn2);
-//
-//        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/th.ttf");
-//        txtMainApp.setTypeface(face);
-//        btn1.setTypeface(face);
-//        btn2.setTypeface(face);
+        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
 
-
-
+        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/datafont.ttf");
+        txtMainApp.setTypeface(face);
 
 
         clearCache.deleteCache(this);
@@ -55,8 +50,9 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setLogo(R.drawable.logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
 
     }
@@ -99,6 +95,9 @@ public class Main2Activity extends AppCompatActivity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         return networkInfo != null && (ConnectivityManager.TYPE_WIFI == networkInfo.getType()) && networkInfo.isConnected();
     }
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
 }

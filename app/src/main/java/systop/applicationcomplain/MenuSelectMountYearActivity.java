@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -39,6 +40,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MenuSelectMountYearActivity extends AppCompatActivity {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -52,11 +55,12 @@ public class MenuSelectMountYearActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_select_mount_year);
         clearCache.deleteCache(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,60 +249,73 @@ public class MenuSelectMountYearActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            List<DataComplain> data = new ArrayList<>();
+            if (result.equals("no rows")){
+                final AlertDialog.Builder dialogs = new AlertDialog.Builder(MenuSelectMountYearActivity.this);
+                dialogs.setTitle("คำเตือน");
+                dialogs.setMessage("ไม่พบข้อมูลที่ค้นหา");
+                dialogs.setCancelable(true);
+                dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        handler.removeMessages(0);
+                        finish();
+                    }
+                });
+                dialogs.show();
+            }
+            else {
+                //this method will be running on UI thread
 
-            //this method will be running on UI thread
-            List<DataComplain> data=new ArrayList<>();
-            data.clear();
-            mRVManageEmployee = (RecyclerView)findViewById(R.id.ManageList);
-            mAdapter = new AdpaterMount(MenuSelectMountYearActivity.this, data);
-            mRVManageEmployee.setAdapter(mAdapter);
-            mRVManageEmployee.setLayoutManager(new LinearLayoutManager(MenuSelectMountYearActivity.this));
+                try {
 
-            try {
+                    JSONArray jArray = new JSONArray(result);
 
-                JSONArray jArray = new JSONArray(result);
+                    // Extract data from json and store into ArrayList as class objects
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+                        DataComplain Data = new DataComplain();
+                        Data.Main = json_data.getString("Main");
+                        Data.IdCode = json_data.getString("IdCode");
+                        Data.Status = json_data.getString("Status");
+                        Data.DocterName = json_data.getString("NameDoctor");
+                        Data.ResponsiblePerson = json_data.getString("responsiblePerson");
 
-                // Extract data from json and store into ArrayList as class objects
-                for(int i=0;i<jArray.length();i++){
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    DataComplain Data = new DataComplain();
-                    Data.Main= json_data.getString("Main");
-                    Data.IdCode= json_data.getString("IdCode");
-                    Data.Status= json_data.getString("Status");
-                    Data.DocterName= json_data.getString("NameDoctor");
-                    Data.ResponsiblePerson= json_data.getString("responsiblePerson");
+                        Data.IdPeople = json_data.getString("IdPeople");
+                        Data.TittleName = json_data.getString("TittleName");
+                        Data.Name = json_data.getString("Name");
+                        Data.SurName = json_data.getString("SurName");
+                        Data.Relationship = json_data.getString("Relationship");
+                        Data.Phone = json_data.getString("PhoneNumber");
+                        Data.PhoneHome = json_data.getString("PhoneHome");
+                        Data.Email = json_data.getString("Email");
+                        Data.Adress = json_data.getString("Adress");
+                        Data.Day = json_data.getString("Day");
+                        Data.AtDay = json_data.getString("AtDay");
+                        Data.Detail = json_data.getString("Detai");
+                        Data.HospitalName = json_data.getString("HospitalName");
+                        Data.RecipientComplaints = json_data.getString("RecipientComplaints");
 
-                    Data.IdPeople= json_data.getString("IdPeople");
-                    Data.TittleName= json_data.getString("TittleName");
-                    Data.Name= json_data.getString("Name");
-                    Data.SurName= json_data.getString("SurName");
-                    Data.Relationship= json_data.getString("Relationship");
-                    Data.Phone= json_data.getString("PhoneNumber");
-                    Data.PhoneHome= json_data.getString("PhoneHome");
-                    Data.Email= json_data.getString("Email");
-                    Data.Adress= json_data.getString("Adress");
-                    Data.Day= json_data.getString("Day");
-                    Data.AtDay= json_data.getString("AtDay");
-                    Data.Detail= json_data.getString("Detai");
-                    Data.HospitalName= json_data.getString("HospitalName");
-                    Data.RecipientComplaints= json_data.getString("RecipientComplaints");
+                        data.add(Data);
+                    }
 
-                    data.add(Data);
+                    // Setup and Handover data to recyclerview
+                    mRVManageEmployee = (RecyclerView) findViewById(R.id.ManageList);
+                    mAdapter = new AdpaterMount(MenuSelectMountYearActivity.this, data);
+                    mRVManageEmployee.setAdapter(mAdapter);
+                    mRVManageEmployee.setLayoutManager(new LinearLayoutManager(MenuSelectMountYearActivity.this));
+
+
+                } catch (JSONException e) {
+
                 }
-
-                // Setup and Handover data to recyclerview
-                mRVManageEmployee = (RecyclerView)findViewById(R.id.ManageList);
-                mAdapter = new AdpaterMount(MenuSelectMountYearActivity.this, data);
-                mRVManageEmployee.setAdapter(mAdapter);
-                mRVManageEmployee.setLayoutManager(new LinearLayoutManager(MenuSelectMountYearActivity.this));
-
-
-            } catch (JSONException e) {
-
             }
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

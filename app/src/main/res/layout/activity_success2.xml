@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/pdf" />
+        android:background="@color/fab_color"
+        android:src="@drawable/icn_pdf" />
 
 </android.support.design.widget.CoordinatorLayout>

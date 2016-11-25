@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -38,6 +39,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class FragmentNavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView txtUserName;
@@ -56,8 +59,9 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setLogo(R.drawable.logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         String User = getIntent().getStringExtra("User");
         String Pass = getIntent().getStringExtra("Pass");
@@ -107,10 +111,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Intent intent = new Intent(getApplicationContext(), SearchDoctorActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_gallery) {
             String User = getIntent().getStringExtra("User");
             Intent intent = new Intent(getApplicationContext(), InputIdPeople1Activity.class);
             intent.putExtra("User", User);
@@ -698,6 +699,10 @@ public class FragmentNavigationDrawer extends AppCompatActivity
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

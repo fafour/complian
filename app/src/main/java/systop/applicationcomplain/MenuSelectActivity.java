@@ -20,6 +20,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MenuSelectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     private Spinner spinner1;
@@ -47,18 +49,18 @@ public class MenuSelectActivity extends AppCompatActivity implements AdapterView
         }
         spinner = (Spinner) findViewById(R.id.spinner);
         List dataStatus = new ArrayList();
-        dataStatus.add("01");
-        dataStatus.add("02");
-        dataStatus.add("03");
-        dataStatus.add("04");
-        dataStatus.add("05");
-        dataStatus.add("06");
-        dataStatus.add("07");
-        dataStatus.add("08");
-        dataStatus.add("09");
-        dataStatus.add("10");
-        dataStatus.add("11");
-        dataStatus.add("12");
+        dataStatus.add("มกราคม");
+        dataStatus.add("กุมภาพันธ์");
+        dataStatus.add("มีนาคม");
+        dataStatus.add("เมษายน");
+        dataStatus.add("พฤษภาคม");
+        dataStatus.add("มิถุนายน");
+        dataStatus.add("กรกฎาคม");
+        dataStatus.add("สิงหาคม");
+        dataStatus.add("กันยายน");
+        dataStatus.add("ตุลาคม");
+        dataStatus.add("พฤศจิกายน");
+        dataStatus.add("ธันวาคม");
 
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, dataStatus);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -68,7 +70,42 @@ public class MenuSelectActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-                detailMount = parentView.getItemAtPosition(position).toString();
+                if(parentView.getItemAtPosition(position).toString().equals("มกราคม")){
+                    detailMount = "01";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("กุมภาพันธ์")){
+                    detailMount = "02";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("มีนาคม")){
+                    detailMount = "03";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("เมษายน")){
+                    detailMount = "04";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("พฤษภาคม")){
+                    detailMount = "05";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("มิถุนายน")){
+                    detailMount = "06";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("กรกฎาคม")){
+                    detailMount = "07";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("สิงหาคม")){
+                    detailMount = "08";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("กันยายน")){
+                    detailMount = "09";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("ตุลาคม")){
+                    detailMount = "10";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("พฤศจิกายน")){
+                    detailMount = "11";
+                }
+                else if(parentView.getItemAtPosition(position).toString().equals("ธันวาคม")){
+                    detailMount = "12";
+                }
 
             }
 
@@ -169,5 +206,9 @@ public class MenuSelectActivity extends AppCompatActivity implements AdapterView
         startActivity(intent);
         finish();
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }

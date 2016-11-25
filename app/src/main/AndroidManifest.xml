@@ -7,34 +7,67 @@
         android:minSdkVersion="8" />
 
     <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens= "false"
-        android:anyDensity="true" />
+        android:xlargeScreens="false" />
 
     <compatible-screens>
+
         <!-- all small size screens -->
-        <screen android:screenSize="small" android:screenDensity="ldpi" />
-        <screen android:screenSize="small" android:screenDensity="mdpi" />
-        <screen android:screenSize="small" android:screenDensity="hdpi" />
-        <screen android:screenSize="small" android:screenDensity="xhdpi" />
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small" />
         <!-- all normal size screens -->
-        <screen android:screenSize="normal" android:screenDensity="ldpi" />
-        <screen android:screenSize="normal" android:screenDensity="mdpi" />
-        <screen android:screenSize="normal" android:screenDensity="hdpi" />
-        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
         <!-- all large size screens -->
-        <screen android:screenSize="large" android:screenDensity="ldpi" />
-        <screen android:screenSize="large" android:screenDensity="mdpi" />
-        <screen android:screenSize="large" android:screenDensity="hdpi" />
-        <screen android:screenSize="large" android:screenDensity="xhdpi" />
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="large" />
         <!-- all xlarge size screens -->
-        <screen android:screenSize="xlarge" android:screenDensity="ldpi" />
-        <screen android:screenSize="xlarge" android:screenDensity="mdpi" />
-        <screen android:screenSize="xlarge" android:screenDensity="hdpi" />
-        <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="xlarge" />
     </compatible-screens>
 
     <uses-configuration android:reqTouchScreen="finger" />
@@ -45,7 +78,6 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
 
     <supports-gl-texture android:name="GL_IMG_texture_compression_pvrtc" />
 
@@ -62,10 +94,10 @@
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name="android.support.multidex.MultiDexApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="แอพพลิเคชั่นร้องเรียนแพทย์"
+        android:icon="@drawable/icon_app"
+        android:label="TMC e-Ethic"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -126,7 +158,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SearchDoctorActivity"
-            android:label= " "
+            android:label=" "
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
@@ -165,18 +197,16 @@
         </activity>
         <activity
             android:name=".UpdateStatusEmployeeActivity"
-            android:label="แก้ไขสถานะของเจ้าหน้าที่"
-            />
+            android:label="แก้ไขสถานะของเจ้าหน้าที่" />
         <activity
             android:name=".UpdateLevelEmployeeActivity"
-            android:label="แก้ไขระดับของเจ้าหน้าที่"/>
+            android:label="แก้ไขระดับของเจ้าหน้าที่" />
         <activity
             android:name=".AddEmployeeActivity"
-            android:label="เพิ่มเจ้าหน้าที่"/>
+            android:label="เพิ่มเจ้าหน้าที่" />
         <activity
             android:name=".UpdateNameActivity"
-            android:label="แก้ไขชื่อขสกุลเจ้าหน้าที่"
-            />
+            android:label="แก้ไขชื่อขสกุลเจ้าหน้าที่" />
         <activity
             android:name=".Manage1Activity"
             android:label="ผลการค้นหาเจ้าหน้าที่"
@@ -211,9 +241,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UpdateStatusActivity"
-            android:label="แก้ไขสถานะข้อมูลการร้องเรียน"/>
-        <activity android:name=".UpdateWorkActivity"
-            android:label="แก้ไขผู้รับผิดชอบข้อมูลการร้องเรียน"/>
+            android:label="แก้ไขสถานะข้อมูลการร้องเรียน" />
+        <activity
+            android:name=".UpdateWorkActivity"
+            android:label="แก้ไขผู้รับผิดชอบข้อมูลการร้องเรียน" />
         <activity
             android:name=".ScrollingUpdateEmployeeAddDataActivity"
             android:label="  "
@@ -356,7 +387,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Main2Activity"
-            android:label="หน้าแรก"/>
+            android:label="หน้าแรก" />
         <activity
             android:name=".MainMenuEmployeeActivity"
             android:label=" "
@@ -442,6 +473,10 @@
         <activity
             android:name=".ScrollingData1Activity"
             android:label="  "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuSelectTimeActivity"
+            android:label="@string/title_activity_menu_select_time"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

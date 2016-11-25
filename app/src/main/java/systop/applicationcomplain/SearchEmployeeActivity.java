@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -37,6 +38,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SearchEmployeeActivity extends AppCompatActivity {
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -218,6 +221,9 @@ public class SearchEmployeeActivity extends AppCompatActivity {
             }else{
 
                 try {
+                    TextView txt = (TextView) findViewById(R.id.txt);
+                    txt.setText("ผลการค้นหา : "+searchQuery);
+                    txt.setBackgroundResource(R.drawable.edittext_bg);
 
                     JSONArray jArray = new JSONArray(result);
 
@@ -249,6 +255,10 @@ public class SearchEmployeeActivity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 }
 

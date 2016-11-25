@@ -9,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.InputIdPeople1Activity"
     tools:showIn="@layout/activity_input_id_people1">
@@ -26,6 +25,7 @@
         android:layout_height="wrap_content"
         android:textSize="23dp"
         android:textStyle="bold"
+        android:id="@+id/txt1"
         android:text="กรุณากรอกเลขประจำตัวประชาชน"
         android:layout_gravity="center"
         android:textColor="@android:color/black"
@@ -42,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
+        android:id="@+id/txt2"
         android:textColor="@android:color/black"
         android:text="เลขประจำตัวประชาชน"/>
 
@@ -143,10 +144,9 @@
         android:layout_gravity="center"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content"
-        android:background="@drawable/design_button"
+        android:background="@drawable/icn_ok"
         android:textSize="17dp"
-        android:onClick="Click3"
-        android:text="ถัดไป"/>
+        android:onClick="Click3" />
 
 
 

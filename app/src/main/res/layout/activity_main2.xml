@@ -9,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.Main2Activity"
     tools:showIn="@layout/activity_main2">
@@ -26,7 +25,7 @@
         android:id="@+id/txtMainApp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="แอพพลิเคชั่นร้องเรียนแพทย์" />
+        android:text="TMC e-Ethic" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,9 +35,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn1"
         android:layout_gravity="center"
-        android:drawableLeft="@drawable/people"
-        android:background="@drawable/design_button"
-        android:text="สำหรับประชาชน"
+        android:background="@drawable/icn_forpeople"
         android:textSize="20dp"
         android:onClick="Click1"/>
     <TextView
@@ -48,10 +45,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="สำหรับเจ้าหน้าที่"
         android:layout_gravity="center"
-        android:background="@drawable/design_button"
-        android:drawableLeft="@drawable/admin_menu"
+        android:background="@drawable/icn_forem"
         android:textSize="20dp"
         android:id="@+id/btn2"
         android:onClick="Click2"/>

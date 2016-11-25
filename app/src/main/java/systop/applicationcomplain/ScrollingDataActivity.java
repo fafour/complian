@@ -14,6 +14,9 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,6 +31,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateFormat;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -98,6 +102,8 @@ import java.util.Map;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ScrollingDataActivity extends AppCompatActivity  {
     TextView txtidpeole, peole, re, phone, txtemail, add, phonehome, atdat, date, doctor, hos, rec, res, main1, de, code, tus;
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -108,6 +114,7 @@ public class ScrollingDataActivity extends AppCompatActivity  {
     private ImageView imageView;
     String image_data1 ="";
 
+    String noItem ="";
     ProgressDialog progressDialog ;
 
     @Override
@@ -118,8 +125,9 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +190,13 @@ public class ScrollingDataActivity extends AppCompatActivity  {
                             Toast.makeText(getApplicationContext(), "ไม่สามารถทำงานได้ ", Toast.LENGTH_LONG).show();
                         }
                         //Toast.makeText(getApplicationContext(),image_data, Toast.LENGTH_SHORT).show();
-                        new DownloadImage().execute(image_data);
+                        if( !image_data.equals("null")){
+                            new DownloadImage().execute(image_data);
+                        }else{
+                            noItem = "null";
+                        }
+
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -240,10 +254,10 @@ public class ScrollingDataActivity extends AppCompatActivity  {
 
         }
 
-
+        String dataAdress2 ="";
         if(!part3.equals("ถนน #:#")){
             String[] Road1 = part3.split("#:#");
-            String dataAdress2 = Road1[1];
+            dataAdress2 = Road1[1];
         }else {
 
         }
@@ -257,12 +271,24 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         String[] Province1 = part6.split("#:#");
         String dataAdress5 = Province1[1];
 
+        String dataAdress6 ="";
         if(!part7.equals("ไปรษณีย์ #:#")) {
             String[] PostalCode1 = part7.split("#:#");
-            String dataAdress6 = PostalCode1[1];
+            dataAdress6 = PostalCode1[1];
         }else {
 
         }
+
+
+        final String Adrres1 = "บ้านเลขที่ :"+dataAdress+"\n"+
+                "ซอย/หมู่บ้าน :"+dataAdress1+"\n"+
+                "ถนน :"+dataAdress2+"\n"+
+                "ตำบล/แขวง :"+dataAdress3+"\n"+
+                "อำเภอ/เขต :"+dataAdress4+"\n"+
+                "จังหวัด :"+dataAdress5+"\n"+
+                "ไปรษณีย์ :"+dataAdress6;
+
+        add.setText(Adrres1);
 
         String Url1 = localhost.url+"pic_Get.php";
         StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Url1,
@@ -278,7 +304,9 @@ public class ScrollingDataActivity extends AppCompatActivity  {
                             Toast.makeText(getApplicationContext(), "ไม่สามารถทำงานได้ ", Toast.LENGTH_LONG).show();
                         }
                         //Toast.makeText(getApplicationContext(),image_data, Toast.LENGTH_SHORT).show();
-                        new DownloadImage1().execute(image_data1);
+                        if( !image_data1.equals("null")) {
+                            new DownloadImage1().execute(image_data1);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -518,19 +546,21 @@ public class ScrollingDataActivity extends AppCompatActivity  {
 
 
 
-            Font font = FontFactory.getFont("assets/fonts/th.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            Font font = FontFactory.getFont("assets/fonts/thnew.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             font.setSize(16);
 
-            Font font1 = FontFactory.getFont("assets/fonts/th.ttf", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+            Font font1 = FontFactory.getFont("assets/fonts/thnew.ttf", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
             font1.setSize(24);
             font1.setStyle("bold");
 
-            Bitmap bmp = image;
-            Bitmap resized = Bitmap.createScaledBitmap(bmp,(int)(bmp.getWidth()*0.045), (int)(bmp.getHeight()*0.045), true);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            resized.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            Image images = Image.getInstance(stream.toByteArray());
-            document.add(images);
+            if(!noItem.equals("null")) {
+                Bitmap bmp = image;
+                Bitmap resized = Bitmap.createScaledBitmap(bmp, (int) (bmp.getWidth() * 0.045), (int) (bmp.getHeight() * 0.045), true);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                resized.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                Image images = Image.getInstance(stream.toByteArray());
+                document.add(images);
+            }
 
 
             ColumnText column = new ColumnText(docWriter.getDirectContent());
@@ -585,7 +615,7 @@ public class ScrollingDataActivity extends AppCompatActivity  {
             }
 
             ColumnText column3 = new ColumnText(docWriter.getDirectContent());
-            column3.setSimpleColumn(390, 740, 569, 36);
+            column3.setSimpleColumn(410, 740, 569, 36);
             column3.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
             column3.addElement(new Paragraph("วันที่ "+part1+" "+mount+" พ.ศ. "+year, font));
             column3.go();
@@ -611,12 +641,12 @@ public class ScrollingDataActivity extends AppCompatActivity  {
             String data5 = adress[5];
             String data6 = adress[6];
 
-            String[] HouseNo1 = data.split(":");
+            String[] HouseNo1 = data.split("#:#");
             String HouseNo = HouseNo1[1];
 
             String Lane ="";
-            if(!data1.equals("ซอย/หมู่บ้าน :")) {
-                String[] Lane1 = data1.split(":");
+            if(!data1.equals("ซอย/หมู่บ้าน #:#")) {
+                String[] Lane1 = data1.split("#:#");
                 Lane = Lane1[1];
             }else {
                 Lane = "                     ";
@@ -624,26 +654,26 @@ public class ScrollingDataActivity extends AppCompatActivity  {
             }
 
             String Road = "";
-            if(!data2.equals("ถนน :")){
-                String[] Road1 = data2.split(":");
+            if(!data2.equals("ถนน #:#")){
+                String[] Road1 = data2.split("#:#");
                 Road = Road1[1];
             }else {
                 Road ="                   ";
             }
 
 
-            String[] SubDistrict1 = data3.split(":");
+            String[] SubDistrict1 = data3.split("#:#");
             String SubDistrict = SubDistrict1[1];
 
-            String[] District1 = data4.split(":");
+            String[] District1 = data4.split("#:#");
             String District = District1[1];
 
-            String[] Province1 = data5.split(":");
+            String[] Province1 = data5.split("#:#");
             String Province = Province1[1];
 
             String PostalCode ="";
-            if(!data6.equals("ไปรษณีย์ :")) {
-                String[] PostalCode1 = data6.split(":");
+            if(!data6.equals("ไปรษณีย์ #:#")) {
+                String[] PostalCode1 = data6.split("#:#");
                 PostalCode = PostalCode1[1];
             }else {
                 PostalCode ="                              ";
@@ -873,19 +903,17 @@ public class ScrollingDataActivity extends AppCompatActivity  {
 
         @Override
         protected void onPostExecute(String result) {
-            try {
-                String txtResponsiblePerson1 = "ไม่มีผู้รับผิดชอบ";
-                if (ResponsiblePerson.equals(txtResponsiblePerson1)) {
-                    res.setText(txtResponsiblePerson1);
-                } else {
+            if(result.equals("no rows")){
+                res.setText("ไม่มีผู้รับผิดชอบ");
+            }else {
+                try {
                     JSONArray jArray = new JSONArray(result);
                     JSONObject json_data = jArray.getJSONObject(0);
                     res.setText(json_data.getString("NameUser") + "  " + json_data.getString("SurNameUser"));
+
+                } catch (JSONException e) {
+
                 }
-
-
-            } catch (JSONException e) {
-
             }
         }
 
@@ -982,19 +1010,17 @@ public class ScrollingDataActivity extends AppCompatActivity  {
 
         @Override
         protected void onPostExecute(String result) {
-            try {
-                String txtRecipientComplaints1 = "ไม่มผู้รับเรื่อง";
-                if (RecipientComplaints.equals(txtRecipientComplaints1)) {
-                    rec.setText(txtRecipientComplaints1);
-                } else {
+            if(result.equals("no rows")){
+                rec.setText("ไม่มีผู้รับเรื่อง");
+            }else {
+                try {
                     JSONArray jArray = new JSONArray(result);
                     JSONObject json_data = jArray.getJSONObject(0);
                     rec.setText(json_data.getString("NameUser") + "  " + json_data.getString("SurNameUser"));
+
+                } catch (JSONException e) {
+
                 }
-
-
-            } catch (JSONException e) {
-
             }
         }
 
@@ -1045,7 +1071,9 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Bitmap result) {
             progressDialog.dismiss();
-            imageView.setImageBitmap( getRoundedShape(result));
+
+            imageView.setImageBitmap(getRoundedShape(result));
+
 
         }
     }
@@ -1167,6 +1195,9 @@ public class ScrollingDataActivity extends AppCompatActivity  {
         }
 
     }
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
 }

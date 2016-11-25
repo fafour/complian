@@ -9,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.UpdateNameActivity"
     tools:showIn="@layout/activity_update_name">
@@ -24,11 +23,11 @@
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:textSize="20dp"/>
+        android:textSize="23dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"/>
+        android:textSize="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,16 +42,16 @@
         android:id="@+id/item_name3"
         android:inputType="text"
         android:hint="กรอกชื่อ"
-        android:textColor="@android:color/white"
+        android:background="@drawable/edittext_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"/>
+        android:textSize="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,23 +64,19 @@
         android:id="@+id/item_sname3"
         android:inputType="text"
         android:hint="กรอกนามสกุล"
-        android:textColor="@android:color/white"
+        android:background="@drawable/edittext_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ยืนยัน"
+        android:background="@drawable/icn_ok"
         android:onClick="click1"
         android:textSize="15dp"/>
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ShowDataDetailActivity"
     tools:showIn="@layout/activity_show_data_detail">
@@ -54,7 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData"
                 android:text="txt"
                 />
@@ -75,7 +73,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData1"
                 android:text="txt"
                 />
@@ -96,7 +93,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData2"
                 android:text="txt"
                 />
@@ -117,7 +113,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData3"
                 android:text="txt"
                 />
@@ -138,7 +133,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData4"
                 android:text="txt"
                 />
@@ -161,7 +155,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData5"
                 android:text="txt"
                 />
@@ -181,7 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
+
                 android:id="@+id/txtData6"
                 android:text="txt"
                 />
@@ -203,7 +196,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@android:color/white"
                 android:id="@+id/txtData7"
                 android:text="txt"
                 />

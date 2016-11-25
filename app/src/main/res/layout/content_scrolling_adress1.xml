@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@layout/repeat_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="systop.applicationcomplain.ScrollingAdress1Activity"
     tools:showIn="@layout/activity_scrolling_adress1">
@@ -27,16 +26,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="23dp"
             android:textStyle="bold"
-            android:text="        ที่อยู่ที่ติดต่อของผู้ร้อง"
+            android:text="      ที่อยู่ที่ติดต่อของผู้ร้อง"
             android:textColor="@android:color/black"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -49,7 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="บ้านเลขที่"/>
             <TextView
@@ -71,10 +70,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/HouseNo"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกบ้านเลขที่">
@@ -86,7 +85,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -97,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ซอย/หมู่บ้าน :"/>
             <TextView
@@ -107,9 +106,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/Lane"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -122,7 +121,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -133,7 +132,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ถนน :"/>
             <TextView
@@ -143,9 +142,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/Road"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textSize="15dp"
@@ -158,7 +157,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -169,7 +168,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="ตำบล/แขวง"/>
             <TextView
@@ -191,9 +190,9 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/SubDistrict"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:textSize="15dp"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
@@ -206,7 +205,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -217,7 +216,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="อำเภอ/เขต"/>
             <TextView
@@ -239,10 +238,10 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/District"
                 android:textSize="15dp"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:hint="กรุณากรอกอำเภอ/เขต">
@@ -254,7 +253,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -265,7 +264,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:inputType=
                     "textCapSentences|textAutoCorrect"
                 android:textColor="@android:color/black"
@@ -298,7 +297,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
         <LinearLayout
@@ -309,7 +308,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="รหัสไปรษณีย์ :"/>
             <TextView
@@ -319,12 +318,12 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/PostalCode"
                 android:textSize="15dp"
                 android:inputType="numberSigned"
                 android:maxLength="5"
-                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณากรอกรหัสไปรษณีย์">
                 <requestFocus />
             </EditText>
@@ -334,7 +333,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"
             />
 
@@ -346,7 +345,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="@android:color/black"
                 android:text="เบอร์โทรศัพท์บ้าน :"/>
             <TextView
@@ -356,37 +355,19 @@
                 android:text="  "/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/PhoneHome"
                 android:textSize="15dp"
-                android:inputType="numberSigned"
-                android:maxLength="10"
-                android:textColor="@android:color/white"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:background="@drawable/edittext_bg"
                 android:hint="กรุณากรอกเบอร์โทรศัพท์บ้าน">
                 <requestFocus />
             </EditText>
 
 
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="@android:color/black"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="  "/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_gravity="center"
-            android:textColor="@android:color/black"
-            android:text="  "/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -28,6 +28,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MenuEmployeeActivity extends AppCompatActivity {
     TextView txtUserName;
     private final Handler handler = new Handler();
@@ -229,6 +231,10 @@ public class MenuEmployeeActivity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
 }

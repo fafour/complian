@@ -33,5 +33,7 @@ dependencies {
     compile files('C:/Users/Fafour/AndroidStudioProjects/ApplicationComplain/jar/itextpdf-5.3.3.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.getbase:floatingactionbutton:1.10.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+
 
 }
