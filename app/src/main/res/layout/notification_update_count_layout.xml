@@ -23,7 +23,7 @@
                 android:id="@+id/button1"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
-                android:background="@drawable/culture" />
+                android:background="@drawable/icn_dm" />
         </RelativeLayout>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/relative_layout_item_count"
             android:background="@android:drawable/ic_notification_overlay"
-            android:text="27"
+            android:text="0"
             android:textColor="#FFF"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -53,7 +53,7 @@
                 android:id="@+id/button2"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
-                android:background="@drawable/sign_check_icon" />
+                android:background="@drawable/icn_dc" />
         </RelativeLayout>
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/relative_layout_item_count1"
             android:background="@android:drawable/ic_notification_overlay"
-            android:text="12"
+            android:text="0"
             android:textColor="#FFF"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -84,7 +84,7 @@
                 android:id="@+id/button3"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
-                android:background="@drawable/action_cancel_icon" />
+                android:background="@drawable/icn_dw" />
         </RelativeLayout>
 
         <TextView
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/relative_layout_item_count2"
             android:background="@android:drawable/ic_notification_overlay"
-            android:text="5"
+            android:text="0"
             android:textColor="#FFF"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -114,7 +114,7 @@
                 android:id="@+id/button4"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
-                android:background="@drawable/logout" />
+                android:background="@drawable/icn_do" />
         </RelativeLayout>
 
     </RelativeLayout>

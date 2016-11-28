@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_logout"
-        android:icon="@drawable/logout"
+        android:icon="@drawable/icn_do"
         android:title="logout"
         android:orderInCategory="100"
         app:showAsAction="always" />

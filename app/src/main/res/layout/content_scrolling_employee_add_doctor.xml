@@ -135,12 +135,13 @@
             />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:onClick="selectData"
             android:textSize="18dp"
-            android:background="@drawable/design_button"
-            android:text="เพิ่มชื่อผู้ถูกร้อง"/>
+            android:background="@drawable/icn_forinsert" />
 
         <TextView
             android:layout_width="wrap_content"

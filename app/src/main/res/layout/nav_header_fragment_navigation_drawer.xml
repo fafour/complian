@@ -23,7 +23,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:background="@drawable/admin" />
+            android:background="@drawable/icn_admin" />
 
         <LinearLayout
             android:layout_width="match_parent"

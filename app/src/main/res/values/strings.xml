@@ -163,4 +163,5 @@
     <string name="title_activity_upload_image_id_people1">UploadImageIdPeople1Activity</string>
     <string name="title_activity_scrolling_data1">ScrollingData1Activity</string>
     <string name="title_activity_menu_select_time">MenuSelectTimeActivity</string>
+    <string name="title_activity_menu_select1_time">MenuSelect1TimeActivity</string>
 </resources>

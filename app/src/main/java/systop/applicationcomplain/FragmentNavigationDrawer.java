@@ -144,7 +144,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
             intent.putExtra("Pass", Pass);
             startActivity(intent);
         } else if (id == R.id.nav_d) {
-            Intent intent = new Intent(getApplicationContext(), MenuSelectActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainDetailDataActivity.class);
             startActivity(intent);
         }
 
@@ -288,7 +288,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
 
     }
     public void click6(View v){
-        Intent intent = new Intent(getApplicationContext(), MenuSelect1Activity.class);
+        Intent intent = new Intent(getApplicationContext(), MainDetailDataActivity.class);
         startActivity(intent);
 
     }

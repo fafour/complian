@@ -99,5 +99,6 @@ public class Main2Activity extends AppCompatActivity {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
+   
 
 }

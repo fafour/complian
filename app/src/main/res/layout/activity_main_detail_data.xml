@@ -1,62 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="systop.applicationcomplain.UpdateWorkActivity"
-    tools:showIn="@layout/activity_update_work">
+    tools:context="systop.applicationcomplain.MainDetailDataActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"/>
+        android:textSize="23dp"
+        android:textColor="@android:color/black" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="แก้ไขผู้รับผิดชอบเรื่องร้องเรียน"
-        android:layout_gravity="center"
+        android:textSize="23dp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="23dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="เลือกรับผิดชอบหน้าที่ : "
-            android:textSize="18dp"/>
-
-    </LinearLayout>
-    <Spinner android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:text="เลือกรายการ"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/icn_fagmount"
+        android:onClick="click1"
         android:textSize="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:textColor="@android:color/black" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:background="@drawable/icn_ok"
-        android:onClick="click1"
+        android:onClick="click2"
         android:textSize="15dp"/>
-
 
 </LinearLayout>

@@ -29,7 +29,7 @@
         <item
             android:id="@+id/nav_d"
             android:icon="@drawable/ic_menu_share"
-            android:title="ดูรายละเอียดแบบเลือกเดือน/ปี" />
+            android:title="ดูรายละเอียดการร้องเรียน" />
         <item
             android:id="@+id/nav_c"
             android:icon="@drawable/ic_menu_share"

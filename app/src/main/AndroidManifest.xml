@@ -476,8 +476,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuSelectTimeActivity"
-            android:label="@string/title_activity_menu_select_time"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="เลือกช่วงเวลาการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuSelect1TimeActivity"
+            android:label="ผลการหาข้อมูลการร้องเรียน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainDetailDataActivity"
+            android:label="ดูรายละเอียดการร้องเรียน"/>
     </application>
 
 </manifest>
