@@ -48,6 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/fab_color"
+        android:tint="@android:color/white"
         android:src="@android:drawable/ic_media_next" />
 
     <ImageView

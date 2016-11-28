@@ -61,7 +61,7 @@
 
     <ImageView
         android:id="@+id/img"
-        android:src="@drawable/people"
+        android:src="@drawable/img_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_anchor="@id/app_bar"

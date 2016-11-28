@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -69,7 +70,6 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         txtUserName.setText("สวัสดี "+User +"!!!");
 
         doTheAutoCheck();
-        doTheAutoCheck1();
         new AsyncCheck().execute();
         new AsyncCheck1().execute();
         new AsyncCheck2().execute();
@@ -299,19 +299,12 @@ public class FragmentNavigationDrawer extends AppCompatActivity
                 new AsyncCheck1().execute();
                 new AsyncCheck2().execute();
                 new AsyncCheck3().execute();
-                doTheAutoCheck();
-            }
-        }, 1000);
-    }
-    private void doTheAutoCheck1() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
                 new AsyncCheck().execute();
                 doTheAutoCheck();
             }
-        }, 5000);
+        }, 500);
     }
+
     private class AsyncCheck extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
@@ -403,7 +396,6 @@ public class FragmentNavigationDrawer extends AppCompatActivity
 
         @Override
         protected void onPostExecute(String result) {
-
             String admin = "[{\"Level\":\"2\",\"Status\":\"1\"}]";
             if (!admin.equals(result)) {
                 Intent intent = new Intent(getApplicationContext(), ClearActivity.class);

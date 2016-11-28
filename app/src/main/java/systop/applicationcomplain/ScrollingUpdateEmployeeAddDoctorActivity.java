@@ -115,7 +115,7 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
         String Status = getIntent().getStringExtra("Status");
         String RecipientComplaints = getIntent().getStringExtra("RecipientComplaints");
 
-        String[] parts = DocterName.split("\n");
+        String[] parts = DocterName.split("\\r?\\n");
         if(parts.length-1 == 0){
             String a = parts[0];
             String[] b = a.split(":");

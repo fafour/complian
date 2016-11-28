@@ -200,7 +200,7 @@ public class ScrollingData1Activity extends AppCompatActivity {
         hos.setText(HospitalName);
         doctor.setText(DocterName);
 
-        String[] parts = Adress.split("\n");
+        String[] parts = Adress.split("\\r?\\n");
         String part1 = parts[0];
         String part2 = parts[1];
         String part3 = parts[2];
@@ -581,7 +581,7 @@ public class ScrollingData1Activity extends AppCompatActivity {
             column5.addElement(new Paragraph("เรียน  เลขาธิการแพทยสภา ", font));
             column5.go();
 
-            String[] adress = Adress.split("\n");
+            String[] adress = Adress.split("\\r?\\n");
             String data = adress[0];
             String data1 = adress[1];
             String data2 = adress[2];
@@ -659,7 +659,7 @@ public class ScrollingData1Activity extends AppCompatActivity {
             column9.go();
 
             String txtname =  "";
-            String[] partsDoc = DocterName.split("\n");
+            String[] partsDoc = DocterName.split("\\r?\\n");
             for(int i = 0 ; i< partsDoc.length;i++) {
                 String a = partsDoc[i];
                 String[] b = a.split(":");

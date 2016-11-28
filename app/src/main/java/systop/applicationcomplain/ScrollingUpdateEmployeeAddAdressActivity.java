@@ -235,7 +235,7 @@ public class ScrollingUpdateEmployeeAddAdressActivity extends AppCompatActivity 
 
         PhoneHome.setText(PhoneHome1);
 
-        String[] parts = Adress.split("\n");
+        String[] parts = Adress.split("\\r?\\n");
         String part1 = parts[0];
         String part2 = parts[1];
         String part3 = parts[2];
