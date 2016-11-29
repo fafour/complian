@@ -1,6 +1,8 @@
 package systop.applicationcomplain;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -440,6 +443,18 @@ public class Success1Activity extends AppCompatActivity {
             {
                 // notify the user they can't open it.
             }
+            String filename=files.toString().substring(files.toString().lastIndexOf("/")+1);
+            NotificationCompat.Builder builder =
+                    new NotificationCompat.Builder(Success1Activity.this)
+                            .setSmallIcon(R.drawable.icon_app)
+                            .setContentTitle("แสดงข้อมูล PDF")
+                            .setContentText(filename.toString());
+            PendingIntent resultPendingIntent =
+                    PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(resultPendingIntent);
+
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.notify(0, builder.build());
 
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();

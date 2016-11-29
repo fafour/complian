@@ -1,17 +1,15 @@
 package systop.applicationcomplain;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,24 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,18 +38,16 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ManageActivity extends AppCompatActivity {
+public class MenuHistoryLoginActivity extends AppCompatActivity {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private RecyclerView mRVManageEmployee;
-    private AdapterManage mAdapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private final Handler handler = new Handler();
+    private AdapterHistory mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu_history_login);
         clearCache.deleteCache(this);
-        setContentView(R.layout.activity_manage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -65,11 +56,10 @@ public class ManageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder dialog1 = new AlertDialog.Builder(ManageActivity.this);
+                final AlertDialog.Builder dialog1 = new AlertDialog.Builder(MenuHistoryLoginActivity.this);
                 dialog1.setTitle("ต้องการย้อนกลับไปหน้าหลักหรือไม่?");
                 dialog1.setCancelable(true);
                 dialog1.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
@@ -104,100 +94,7 @@ public class ManageActivity extends AppCompatActivity {
                     }).setIcon(android.R.drawable.ic_dialog_alert).show();
 
         }
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_to_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new AsyncFetch().execute();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, R.color.colorAccent, R.color.colorPrimaryDark);
 
-        doTheAutoRefresh();
-
-        com.getbase.floatingactionbutton.FloatingActionButton fab1 = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.fab1);
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addEmployee();
-            }
-        });
-        com.getbase.floatingactionbutton.FloatingActionButton fab2 = (com.getbase.floatingactionbutton.FloatingActionButton) findViewById(R.id.fab2);
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                history();
-            }
-        });
-
-        final FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-        frameLayout.getBackground().setAlpha(0);
-        final FloatingActionsMenu fabMenu = (FloatingActionsMenu) findViewById(R.id.fab_menu);
-        fabMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
-            @Override
-            public void onMenuExpanded() {
-                frameLayout.getBackground().setAlpha(240);
-                frameLayout.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        fabMenu.collapse();
-                        return false;
-                    }
-                });
-            }
-
-            @Override
-            public void onMenuCollapsed() {
-                frameLayout.getBackground().setAlpha(0);
-                frameLayout.setOnTouchListener(null);
-            }
-        });
-    }
-    public void addEmployee(){
-        Intent intent = new Intent(getApplicationContext(), AddEmployeeActivity.class);
-        startActivity(intent);
-    }
-    public void history(){
-        Intent intent = new Intent(getApplicationContext(), MenuHistoryLoginActivity.class);
-        startActivity(intent);
-    }
-    private void doTheAutoRefresh() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncFetch().execute();
-                doTheAutoRefresh();
-            }
-        }, 5000);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_actions, menu);
-
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // action with ID action_refresh was selected
-            case R.id.action_refresh:
-                    new AsyncFetch().execute();
-                break;
-            // action with ID action_settings was selected
-            case R.id.action_search:
-                    Intent intent = new Intent(getApplicationContext(), SearchEmployeeActivity.class);
-                    startActivity(intent);
-                break;
-
-            default:
-                break;
-        }
-
-        return true;
     }
     public void onBackPressed() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -205,7 +102,6 @@ public class ManageActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
                 finish();
             }
         });
@@ -246,7 +142,7 @@ public class ManageActivity extends AppCompatActivity {
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL(localhost.url+"responsiblePerson1.php");
+                url = new URL(localhost.url+"history_show_login.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -256,13 +152,27 @@ public class ManageActivity extends AppCompatActivity {
             try {
 
                 // Setup HttpURLConnection class to send and receive data from php and mysql
+                // Setup HttpURLConnection class to send and receive data from php and mysql
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
                 conn.setRequestMethod("POST");
 
-                // setDoOutput to true as we recieve data from json file
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
                 conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", "aaaa");
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
 
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
@@ -309,12 +219,12 @@ public class ManageActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             //this method will be running on UI thread
-            List<DataEmployee> data=new ArrayList<>();
+            List<history> data=new ArrayList<>();
             data.clear();
             mRVManageEmployee = (RecyclerView)findViewById(R.id.ManageList);
-            mAdapter = new AdapterManage(ManageActivity.this, data);
+            mAdapter = new AdapterHistory(MenuHistoryLoginActivity.this, data);
             mRVManageEmployee.setAdapter(mAdapter);
-            mRVManageEmployee.setLayoutManager(new LinearLayoutManager(ManageActivity.this));
+            mRVManageEmployee.setLayoutManager(new LinearLayoutManager(MenuHistoryLoginActivity.this));
 
             try {
 
@@ -323,20 +233,18 @@ public class ManageActivity extends AppCompatActivity {
                 // Extract data from json and store into ArrayList as class objects
                 for(int i=0;i<jArray.length();i++){
                     JSONObject json_data = jArray.getJSONObject(i);
-                    DataEmployee Data = new DataEmployee();
-                    Data.UsernameEmp= json_data.getString("Username");
-                    Data.FristName= json_data.getString("NameUser");
-                    Data.SurName= json_data.getString("SurNameUser");
-                    Data.StatusEmp= json_data.getString("Status");
-                    Data.LevelEmp= json_data.getString("Level");
+                    history Data = new history();
+                    Data.usernameLoging= json_data.getString("username");
+                    Data.timeDate= json_data.getString("date_time");
+
                     data.add(Data);
                 }
 
                 // Setup and Handover data to recyclerview
                 mRVManageEmployee = (RecyclerView)findViewById(R.id.ManageList);
-                mAdapter = new AdapterManage(ManageActivity.this, data);
+                mAdapter = new AdapterHistory(MenuHistoryLoginActivity.this, data);
                 mRVManageEmployee.setAdapter(mAdapter);
-                mRVManageEmployee.setLayoutManager(new LinearLayoutManager(ManageActivity.this));
+                mRVManageEmployee.setLayoutManager(new LinearLayoutManager(MenuHistoryLoginActivity.this));
 
 
             } catch (JSONException e) {
@@ -350,7 +258,5 @@ public class ManageActivity extends AppCompatActivity {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
+
 }
-
-
-

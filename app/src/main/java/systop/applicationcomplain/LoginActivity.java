@@ -1,6 +1,8 @@
 package systop.applicationcomplain;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +18,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,6 +43,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -189,7 +203,6 @@ public class LoginActivity extends AppCompatActivity {
                 conn.disconnect();
             }
 
-
         }
 
         @Override
@@ -201,9 +214,7 @@ public class LoginActivity extends AppCompatActivity {
             String admin1 = "[{\"Level\":\"2\",\"Status\":\"0\"}]";
             String emp1 = "[{\"Level\":\"1\",\"Status\":\"0\"}]";
 
-
             pdLoading.dismiss();
-
 
             if(result.equals(admin))
             {
@@ -213,6 +224,49 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("User", user1);
                 intent.putExtra("Pass", pass1);
                 startActivity(intent);
+
+
+                String Url = localhost.url+"history_login.php";
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                AlertDialog.Builder dialogs = new AlertDialog.Builder(LoginActivity.this);
+                                dialogs.setTitle("คำเตือน");
+                                dialogs.setMessage("ระบบเกิดข้อผิดพลาด กรุณาตรวจสอบการเชื่อมต่อข้อมูลของท่าน");
+                                dialogs.setCancelable(true);
+                                dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialogs.show();
+                            }
+                        }){
+                    @Override
+                    protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+                        Date dNow = new Date( );
+                        SimpleDateFormat ft =
+                                new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
+
+                        String txt_time = ft.format(dNow);
+
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("Content-Type", "application/json; charset=utf-8");
+                        params.put("username",user1);
+                        params.put("date_time",txt_time);
+                        return params;
+                    }
+
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                requestQueue.add(stringRequest);
             }
             else if(result.equals(emp))
             {
@@ -222,6 +276,49 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("User", user1);
                 intent.putExtra("Pass", pass1);
                 startActivity(intent);
+
+
+                String Url = localhost.url+"history_login.php";
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                AlertDialog.Builder dialogs = new AlertDialog.Builder(LoginActivity.this);
+                                dialogs.setTitle("คำเตือน");
+                                dialogs.setMessage("ระบบเกิดข้อผิดพลาด กรุณาตรวจสอบการเชื่อมต่อข้อมูลของท่าน");
+                                dialogs.setCancelable(true);
+                                dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialogs.show();
+                            }
+                        }){
+                    @Override
+                    protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+                        Date dNow = new Date( );
+                        SimpleDateFormat ft =
+                                new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
+
+                        String txt_time = ft.format(dNow);
+
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("Content-Type", "application/json; charset=utf-8");
+                        params.put("username",user1);
+                        params.put("date_time",txt_time);
+                        return params;
+                    }
+
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                requestQueue.add(stringRequest);
             }
             else if(result.equals(emp1) || result.equals(admin1))
             {
@@ -262,8 +359,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
                 dialogs.show();
-
-
 
             }
         }
@@ -307,6 +402,7 @@ public class LoginActivity extends AppCompatActivity {
         new AsyncLogin().execute(user,pass);
 
     }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));

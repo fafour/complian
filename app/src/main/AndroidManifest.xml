@@ -484,7 +484,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainDetailDataActivity"
-            android:label="ดูรายละเอียดการร้องเรียน"/>
+            android:label="ดูรายละเอียดการร้องเรียน" />
+        <activity
+            android:name=".MenuHistoryLoginActivity"
+            android:label="ประวัติการใช้งานระบบ"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

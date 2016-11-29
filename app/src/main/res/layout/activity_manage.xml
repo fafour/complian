@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context="systop.applicationcomplain.ManageActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -28,14 +29,48 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/fab_color"
-        android:tint="@android:color/white"
-        android:src="@android:drawable/ic_input_add" />
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:layout_gravity="bottom|end">
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_addButtonStrokeVisible="false"
+            fab:fab_addButtonColorNormal="@color/fab_color"
+            fab:fab_addButtonColorPressed="@color/colorPrimaryDark"
+            fab:fab_addButtonPlusIconColor="@android:color/white"
+            android:layout_gravity="bottom|end"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            android:layout_margin="@dimen/fab_margin"
+            >
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/fab_color"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_title="เพิ่มเจ้าหน้าที่"
+                fab:fab_icon="@android:drawable/ic_input_add"
+                fab:fab_size="mini"
+                />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/fab_color"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_title="ตรวจดูการใช้งานระบบ"
+                fab:fab_icon="@android:drawable/ic_menu_recent_history"
+                fab:fab_size="mini"
+                />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>
