@@ -158,10 +158,10 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
 
         InputStream in = null;
         OutputStream out = null;
-        File file = new File(getFilesDir(), "pdf_employee.pdf");
+        File file = new File(getFilesDir(), "pdf_emp.pdf");
         try
         {
-            in = assetManager.open("pdf_employee.pdf");
+            in = assetManager.open("pdf_emp.pdf");
             out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
 
             copyFile(in, out);
@@ -177,7 +177,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(
-                Uri.parse("file://" + getFilesDir() + "/pdf_employee.pdf"),
+                Uri.parse("file://" + getFilesDir() + "/pdf_emp.pdf"),
                 "application/pdf");
 
         startActivity(intent);

@@ -136,10 +136,10 @@ public class FragmentNavigationDrawer extends AppCompatActivity
 
         InputStream in = null;
         OutputStream out = null;
-        File file = new File(getFilesDir(), "pdf_employee.pdf");
+        File file = new File(getFilesDir(), "pdf_ad.pdf");
         try
         {
-            in = assetManager.open("pdf_employee.pdf");
+            in = assetManager.open("pdf_ad.pdf");
             out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
 
             copyFile(in, out);
@@ -155,7 +155,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(
-                Uri.parse("file://" + getFilesDir() + "/pdf_employee.pdf"),
+                Uri.parse("file://" + getFilesDir() + "/pdf_ad.pdf"),
                 "application/pdf");
 
         startActivity(intent);
