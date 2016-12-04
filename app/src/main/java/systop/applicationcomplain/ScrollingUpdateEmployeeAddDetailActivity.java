@@ -286,7 +286,7 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
 
                     Date dNow = new Date( );
                     SimpleDateFormat ft =
-                            new SimpleDateFormat ("dd/MM/yyyy");
+                            new SimpleDateFormat ("yyyy-MM-dd");
                     Date dNow1 = new Date( );
                     SimpleDateFormat ft1 =
                             new SimpleDateFormat ("ddMMyyyyhhmmss");
@@ -412,16 +412,16 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        editText2.setText(dayOfMonth + "/"
-                                + (monthOfYear + 1) + "/" + year);
-                        currentDate1 = dayOfMonth + "/"
-                                + (monthOfYear + 1) + "/" + year;
+                        editText2.setText( year + "-" + (String.format("%02d", monthOfYear + 1  ))
+                                + "-" + String.format("%02d", dayOfMonth  ));
+                        currentDate1 = year + "-" + (String.format("%02d", monthOfYear + 1  ))
+                                + "-" + String.format("%02d", dayOfMonth  );
                     }
                 }, year1, month1, day1);
         dpd.show();
 
         dpd.setCancelable(false);
-        SimpleDateFormat formatter1 = new SimpleDateFormat ("dd/MM/yyyy");
+        SimpleDateFormat formatter1 = new SimpleDateFormat ("yyyy-MM-dd");
         try {
             time = currentDate;
             Date date1 = formatter1.parse(time);
@@ -431,7 +431,7 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
             e.printStackTrace();
         }
 
-        SimpleDateFormat formatter2 = new SimpleDateFormat ("dd/MM/yyyy");
+        SimpleDateFormat formatter2 = new SimpleDateFormat ("yyyy-MM-dd");
         try {
             String AtDay = getIntent().getStringExtra("AtDay");
             Date date = formatter2.parse(AtDay);
@@ -442,12 +442,12 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
 
     }
     private void updateDisplay() {
-        currentDate = new StringBuilder().append(day).append("/")
-                .append(month + 1).append("/").append(year).toString();
+        currentDate = new StringBuilder().append(year).append("-")
+                .append(String.format("%02d", month + 1  )).append("-").append(String.format("%02d", day  )).toString();
 
         Log.i("DATE", currentDate);
 
-        SimpleDateFormat formatter2 = new SimpleDateFormat ("dd/MM/yyyy");
+        SimpleDateFormat formatter2 =new SimpleDateFormat ("yyyy-MM-dd");
         try {
 
             Date date1 = formatter2.parse(currentDate);
@@ -481,7 +481,7 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
             case DATE_DIALOG_ID:
                 DatePickerDialog dialog = new DatePickerDialog(this, myDateSetListener, year, month,
                         day);
-                SimpleDateFormat formatter = new SimpleDateFormat ("dd/MM/yyyy");
+                SimpleDateFormat formatter =new SimpleDateFormat ("yyyy-MM-dd");
                 try {
                     String AtDay = getIntent().getStringExtra("AtDay");
                     @SuppressWarnings("deprecation")

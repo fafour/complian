@@ -1,24 +1,37 @@
 package systop.applicationcomplain;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -45,6 +58,18 @@ public class InputIdPeopleActivity extends AppCompatActivity {
             }
         });
         clearCache.deleteCache(this);
+
+        String text = getString(R.string.msg_sample);
+        String linkText = getString(R.string.msg_linkable);
+        int start = text.indexOf(linkText);
+        int end = start + linkText.length();
+
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new CallToast(), start, end, 0);
+
+        TextView textView = (TextView) findViewById(R.id.text_view);
+        textView.setText(spannableString);
+        textView.setMovementMethod(new LinkMovementMethod());
 
         txt1 = (TextView) findViewById(R.id.txt1);
         txt2 = (TextView) findViewById(R.id.txt2);
@@ -153,6 +178,55 @@ public class InputIdPeopleActivity extends AppCompatActivity {
 //                next();
 //            }
 //        });
+    }
+    private class CallToast extends ClickableSpan {
+        @Override
+        public void onClick(View widget) {
+//            Toast.makeText(InputIdPeopleActivity.this, "Test", Toast.LENGTH_SHORT).show();
+            //AssetFileDescriptor fd = amanager.openFd(files[0]);
+            CopyReadAssets();
+
+        }
+    }
+    private void CopyReadAssets()
+    {
+        AssetManager assetManager = getAssets();
+
+        InputStream in = null;
+        OutputStream out = null;
+        File file = new File(getFilesDir(), "pdf_people.pdf");
+        try
+        {
+            in = assetManager.open("pdf_people.pdf");
+            out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
+
+            copyFile(in, out);
+            in.close();
+            in = null;
+            out.flush();
+            out.close();
+            out = null;
+        } catch (Exception e)
+        {
+            Log.e("tag", e.getMessage());
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(
+                Uri.parse("file://" + getFilesDir() + "/pdf_people.pdf"),
+                "application/pdf");
+
+        startActivity(intent);
+    }
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException
+    {
+        byte[] buffer = new byte[1024];
+        int read;
+        while ((read = in.read(buffer)) != -1)
+        {
+            out.write(buffer, 0, read);
+        }
     }
     public void Click3(View view){
         next();

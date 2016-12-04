@@ -261,12 +261,12 @@ public class Success1Activity extends AppCompatActivity {
             column2.addElement(new Paragraph("เขียนที่  แพทยสภา", font));
             column2.go();
 
-            String[] parts = AtDay.split("/");
+            String[] parts = AtDay.split("-");
             String part1 = parts[0];
             String part2 = parts[1];
             String part3 = parts[2];
             String mount = "";
-            int year = Integer.parseInt(part3)+543;
+            int year = Integer.parseInt(part1)+543;
             if (part2.equals("01") || part2.equals("1")){
                 mount = "มกราคม";
             }else if (part2.equals("02") || part2.equals("2")){
@@ -296,7 +296,7 @@ public class Success1Activity extends AppCompatActivity {
             ColumnText column3 = new ColumnText(docWriter.getDirectContent());
             column3.setSimpleColumn(410, 740, 569, 36);
             column3.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
-            column3.addElement(new Paragraph("วันที่ "+part1+" "+mount+" พ.ศ. "+year, font));
+            column3.addElement(new Paragraph("วันที่ "+part3+" "+mount+" พ.ศ. "+year, font));
             column3.go();
 
             ColumnText column4 = new ColumnText(docWriter.getDirectContent());

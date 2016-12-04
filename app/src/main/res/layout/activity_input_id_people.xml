@@ -31,4 +31,19 @@
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--android:src="@android:drawable/ic_media_next" />-->
 
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:layout_gravity="bottom|left"
+        android:textColorHighlight="@color/text_link_highlight"
+        android:textColorLink="@color/text_link"
+        android:textSize="20dp" />
+
+
+
+
+
 </android.support.design.widget.CoordinatorLayout>

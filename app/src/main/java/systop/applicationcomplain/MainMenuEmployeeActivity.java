@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,6 +14,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -27,6 +32,7 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -59,6 +65,18 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         getSupportActionBar().setBackgroundDrawable( new ColorDrawable( getResources().getColor( R.color.title_color ) ) );
 
         clearCache.deleteCache(this);
+
+        String text = getString(R.string.msg_employee);
+        String linkText = getString(R.string.msg_linkable);
+        int start = text.indexOf(linkText);
+        int end = start + linkText.length();
+
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new MainMenuEmployeeActivity.CallToast(), start, end, 0);
+
+        TextView textView = (TextView) findViewById(R.id.text_view);
+        textView.setText(spannableString);
+        textView.setMovementMethod(new LinkMovementMethod());
 
         String User = getIntent().getStringExtra("User");
         String Pass = getIntent().getStringExtra("Pass");
@@ -125,6 +143,57 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private class CallToast extends ClickableSpan {
+        @Override
+        public void onClick(View widget) {
+//            Toast.makeText(InputIdPeopleActivity.this, "Test", Toast.LENGTH_SHORT).show();
+            //AssetFileDescriptor fd = amanager.openFd(files[0]);
+            CopyReadAssets();
+
+        }
+    }
+    private void CopyReadAssets()
+    {
+        AssetManager assetManager = getAssets();
+
+        InputStream in = null;
+        OutputStream out = null;
+        File file = new File(getFilesDir(), "pdf_employee.pdf");
+        try
+        {
+            in = assetManager.open("pdf_employee.pdf");
+            out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
+
+            copyFile(in, out);
+            in.close();
+            in = null;
+            out.flush();
+            out.close();
+            out = null;
+        } catch (Exception e)
+        {
+            Log.e("tag", e.getMessage());
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(
+                Uri.parse("file://" + getFilesDir() + "/pdf_employee.pdf"),
+                "application/pdf");
+
+        startActivity(intent);
+    }
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException
+    {
+        byte[] buffer = new byte[1024];
+        int read;
+        while ((read = in.read(buffer)) != -1)
+        {
+            out.write(buffer, 0, read);
+        }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -82,9 +82,6 @@ public class MenuSelect1TimeActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         new AsyncFetch().execute();
 
         if (!isNetworkConnected() && !isWifiConnected() ) {

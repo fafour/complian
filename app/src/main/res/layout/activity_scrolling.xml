@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ข้อมูลผู้ถูกร้อง"
+                    android:text="ข้อมูลผู้ร้อง"
                     android:textSize="20sp"
                     android:textColor="@android:color/white"/>
             </android.support.v7.widget.Toolbar>

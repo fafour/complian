@@ -7,6 +7,11 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="drawer_open">Drawer Opened</string>
     <string name="drawer_close">Drawer Closed</string>
+    <string name="msg_sample">คู่มือการใช้งานสำหรับผู้ร้อง คลิก</string>
+    <string name="msg_employee">คู่มือการใช้งานสำหรับเจ้าหน้าที่ คลิก</string>
+    <string name="msg_admin">คู่มือการใช้งานสำหรับAdmin คลิก</string>
+    <string name="msg_linkable">คลิก</string>
+    <string name="yeah">Yeah!</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

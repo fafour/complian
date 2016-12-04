@@ -293,12 +293,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:id="@+id/txt7"
                 android:textColor="@android:color/black"
-                android:text="*เบอร์โทรติดต่อ"/>
+                android:text="เบอร์โทรติดต่อ"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
