@@ -25,7 +25,9 @@ import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -89,6 +91,8 @@ public class ScrollingData1Activity extends AppCompatActivity {
 
     String noItem ="";
     ProgressDialog progressDialog ;
+
+    String getStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,12 +200,14 @@ public class ScrollingData1Activity extends AppCompatActivity {
         atdat.setText(AtDay);
         date.setText(Day);
         de.setText(Detail);
-        tus.setText(Status);
+//        tus.setText(Status);
         code.setText(IdCode);
         main1.setText(Main);
         phonehome.setText(PhoneHome);
         hos.setText(HospitalName);
         doctor.setText(DocterName);
+
+        new getDataStatus().execute(Status);
 
         String[] parts = Adress.split("\\r?\\n");
         String part1 = parts[0];
@@ -375,6 +381,106 @@ public class ScrollingData1Activity extends AppCompatActivity {
                 frameLayout.setOnTouchListener(null);
             }
         });
+    }
+    public class getDataStatus extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "getStatus.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", params[0]);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONArray jArray = new JSONArray(result);
+                JSONObject json_data = jArray.getJSONObject(0);
+                getStatus = (json_data.getString("st_title"));
+                tus.setText(getStatus );
+            } catch (JSONException e) {
+
+            }
+
+        }
+
     }
     public void deleteData () {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -665,7 +771,7 @@ public class ScrollingData1Activity extends AppCompatActivity {
             String[] partsDoc = DocterName.split("\\r?\\n");
             for(int i = 0 ; i< partsDoc.length;i++) {
                 String a = partsDoc[i];
-                String[] b = a.split(":");
+                String[] b = a.split(" : ");
                 String dataDoctor =b[1];
                 txtname = txtname+(i+1)+dataDoctor+"\n";
             }

@@ -488,6 +488,10 @@
         <activity
             android:name=".MenuHistoryLoginActivity"
             android:label="ประวัติการใช้งานระบบ"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FinishActivity"
+            android:label="@string/title_activity_finish"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

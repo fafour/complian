@@ -80,6 +80,8 @@ public class ScrollingDetailActivity extends AppCompatActivity {
     private ImageView imageView;
     String image_data ="";
     ProgressDialog progressDialog ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +116,8 @@ public class ScrollingDetailActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -246,14 +250,16 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                     final String txtPhone = getIntent().getStringExtra("phone");
                     final String txtEmail = getIntent().getStringExtra("Email");
 
-                    String txtHouseNo = getIntent().getStringExtra("HouseNo");
-                    String txtLane = getIntent().getStringExtra("Lane");
-                    String txtRoad = getIntent().getStringExtra("Road");
-                    String txtSubDistrict = getIntent().getStringExtra("SubDistrict");
-                    String txtDistrict = getIntent().getStringExtra("District");
-                    String txtProvince = getIntent().getStringExtra("Province");
-                    String txtPostalCode = getIntent().getStringExtra("PostalCode");
+                    final String txtHouseNo = getIntent().getStringExtra("HouseNo");
+                    final String txtLane = getIntent().getStringExtra("Lane");
+                    final String txtRoad = getIntent().getStringExtra("Road");
+                    final String txtSubDistrict = getIntent().getStringExtra("SubDistrict");
+                    final String txtDistrict = getIntent().getStringExtra("District");
+                    final String txtProvince = getIntent().getStringExtra("Province");
+                    final String txtPostalCode = getIntent().getStringExtra("PostalCode");
                     final String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
+
+                    final String DataCode  = getIntent().getStringExtra("code");
 
                     final String Adrres = "บ้านเลขที่ #:#"+txtHouseNo+"\n"+
                             "ซอย/หมู่บ้าน #:#"+txtLane+"\n"+
@@ -271,20 +277,13 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                     Date dNow = new Date( );
                     SimpleDateFormat ft =
                             new SimpleDateFormat ("yyyy-MM-dd");
-                    Date dNow1 = new Date( );
-                    SimpleDateFormat ft1 =
-                            new SimpleDateFormat ("ddMMyyyyhhmmss");
-                    Random rand = new Random();
-                    int x = rand.nextInt(100000);
-                    String.format("%05d", x);
 
                     final String txtAtDay = ft.format(dNow);
                     final String txtMain1 = txtMain.getText().toString().trim();
                     final String txtDetail = data;
-                    final String txtStatus = "กำลังดำเนินงาน";
+                    final String txtStatus = "1";
                     final String txtResponsiblePerson = "ไม่มีผู้รับผิดชอบ";
                     final String txtRecipientComplaints = "ไม่มีผู้รับเรื่อง";
-                    final String txtIdCode = "eTMCm"+ft1.format(dNow1)+ String.format("%05d", x);
 
                     String Url = localhost.url+"insert.php";
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
@@ -293,7 +292,7 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                                 public void onResponse(String response) {
                                     Toast.makeText(getApplicationContext(),"ทำรายการเสร็จสิ้น",Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), Success1Activity.class);
-                                    intent.putExtra("IdCode", txtIdCode);
+                                    intent.putExtra("IdCode", DataCode);
                                     intent.putExtra("IdPeople",txtIdpeople);
                                     intent.putExtra("TittleName",txtTitleName);
                                     intent.putExtra("Name",txtName);
@@ -353,7 +352,7 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                             params.put("detai", txtDetail);
                             params.put("day", txtDay);
                             params.put("atDay", txtAtDay);
-                            params.put("idCode", txtIdCode);
+                            params.put("idCode", DataCode);
                             params.put("responsiblePerson",txtResponsiblePerson);
                             params.put("main", txtMain1);
                             params.put("status", txtStatus);
@@ -365,6 +364,61 @@ public class ScrollingDetailActivity extends AppCompatActivity {
                     };
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(stringRequest);
+
+                    //---------------------------------------------------------------------------------------------------------------------
+                    String Url1 = localhost.url+"insertWeb.php";
+                    StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Url1,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+
+                                }
+                            }){
+                        @Override
+                        protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+                            java.util.Date dt = new java.util.Date();
+                            java.text.SimpleDateFormat sdf =
+                                    new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                            String currentTime = sdf.format(dt);
+
+                            Map<String,String> params = new HashMap<String, String>();
+                            params.put("Content-Type", "application/json; charset=utf-8");
+                            params.put("com_code",DataCode);
+                            params.put("com_card_number",txtIdpeople);
+                            params.put("com_title_name",txtTitleName);
+                            params.put("com_name",txtName);
+                            params.put("com_lname",txtSurname);
+                            params.put("no_address",txtHouseNo);
+                            params.put("alley",txtLane);
+                            params.put("road",txtRoad);
+                            params.put("district",txtSubDistrict);
+                            params.put("prefecture",txtDistrict);
+                            params.put("province",txtProvince);
+                            params.put("zip_code",txtPostalCode);
+                            params.put("relevance",txtRelationship);
+                            params.put("com_tel",txtPhone);
+                            params.put("com_email",txtEmail);
+                            params.put("com_date",currentTime);
+                            params.put("com_status",String.valueOf(Integer.parseInt("1")));
+                            params.put("authority_id", String.valueOf(Integer.parseInt("0")));
+                            params.put("PhoneHome",txtPhoneHome);
+                            params.put("responsiblePerson",txtResponsiblePerson);
+                            params.put("Main",txtMain1);
+                            return params;
+                        }
+
+                    };
+                    RequestQueue requestQueue1 = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue1.add(stringRequest1);
+                    //---------------------------------------------------------------------------------------------------------------
+
 
                 }else {
                     if (txtMain.getText().toString().isEmpty()) {

@@ -48,7 +48,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txtUserName;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
 
@@ -84,7 +84,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         txtUserName.setText("สวัสดี "+User +"!!!");
 
         new AsyncCheck().execute();
-        doTheAutoCheck();
+//        doTheAutoCheck();
 
         if (!isNetworkConnected() && !isWifiConnected() ) {
 
@@ -135,7 +135,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
             intent.putExtra("Pass", Pass);
             startActivity(intent);
         } else if (id == R.id.nav_send) {
-            handler.removeMessages(0);
+//            handler.removeMessages(0);
             finish();
         }
 
@@ -234,7 +234,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });
@@ -285,14 +285,19 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
         startActivity(intent);
 
     }
-    private void doTheAutoCheck() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncCheck().execute();
-                doTheAutoCheck();
-            }
-        }, 1000);
+//    private void doTheAutoCheck() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncCheck().execute();
+//                doTheAutoCheck();
+//            }
+//        }, 1000);
+//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncCheck().execute();
     }
     private class AsyncCheck extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
@@ -391,7 +396,7 @@ public class MainMenuEmployeeActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ClearActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
             }
 
         }

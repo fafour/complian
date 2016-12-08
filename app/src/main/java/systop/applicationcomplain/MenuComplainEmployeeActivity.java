@@ -49,7 +49,7 @@ public class MenuComplainEmployeeActivity extends AppCompatActivity {
     private RecyclerView mRVManageEmployee;
     private AdapterEmployee mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +112,7 @@ public class MenuComplainEmployeeActivity extends AppCompatActivity {
         });
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, R.color.colorAccent, R.color.colorPrimaryDark);
 
-        doTheAutoRefresh();
+//        doTheAutoRefresh();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,15 +128,20 @@ public class MenuComplainEmployeeActivity extends AppCompatActivity {
         intent.putExtra("User", User);
         startActivity(intent);
     }
-    private void doTheAutoRefresh() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncFetch().execute();
-                doTheAutoRefresh();
-            }
-        }, 5000);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncFetch().execute();
     }
+//    private void doTheAutoRefresh() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncFetch().execute();
+//                doTheAutoRefresh();
+//            }
+//        }, 5000);
+//    }
 
 
 
@@ -173,7 +178,7 @@ public class MenuComplainEmployeeActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });

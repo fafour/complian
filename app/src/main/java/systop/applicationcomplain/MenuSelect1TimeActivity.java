@@ -46,7 +46,7 @@ public class MenuSelect1TimeActivity extends AppCompatActivity {
     private RecyclerView mRVManageEmployee;
     private AdpaterMount mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,25 +108,30 @@ public class MenuSelect1TimeActivity extends AppCompatActivity {
         });
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, R.color.colorAccent, R.color.colorPrimaryDark);
 
-        doTheAutoRefresh();
+//        doTheAutoRefresh();
 
     }
-    private void doTheAutoRefresh() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncFetch().execute();
-                doTheAutoRefresh();
-            }
-        }, 5000);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncFetch().execute();
     }
+//    private void doTheAutoRefresh() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncFetch().execute();
+//                doTheAutoRefresh();
+//            }
+//        }, 5000);
+//    }
     public void onBackPressed() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("ต้องการย้อนกลับหรือไม่?");
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });
@@ -251,7 +256,7 @@ public class MenuSelect1TimeActivity extends AppCompatActivity {
                 dialogs.setCancelable(true);
                 dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        handler.removeMessages(0);
+//                        handler.removeMessages(0);
                         finish();
                     }
                 });

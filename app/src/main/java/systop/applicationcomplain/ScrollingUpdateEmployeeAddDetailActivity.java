@@ -16,6 +16,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,7 +51,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -78,6 +88,9 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
     private ImageView imageView;
     String image_data ="";
     ProgressDialog progressDialog ;
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
+    String dataComID ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +125,8 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
 
             }
         });
+
+
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -256,13 +271,13 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
                     final String txtPhone = getIntent().getStringExtra("phone");
                     final String txtEmail = getIntent().getStringExtra("Email");
 
-                    String txtHouseNo = getIntent().getStringExtra("HouseNo");
-                    String txtLane = getIntent().getStringExtra("Lane");
-                    String txtRoad = getIntent().getStringExtra("Road");
-                    String txtSubDistrict = getIntent().getStringExtra("SubDistrict");
-                    String txtDistrict = getIntent().getStringExtra("District");
-                    String txtProvince = getIntent().getStringExtra("Province");
-                    String txtPostalCode = getIntent().getStringExtra("PostalCode");
+                    final String txtHouseNo = getIntent().getStringExtra("HouseNo");
+                    final String txtLane = getIntent().getStringExtra("Lane");
+                    final String txtRoad = getIntent().getStringExtra("Road");
+                    final String txtSubDistrict = getIntent().getStringExtra("SubDistrict");
+                    final String txtDistrict = getIntent().getStringExtra("District");
+                    final String txtProvince = getIntent().getStringExtra("Province");
+                    final String txtPostalCode = getIntent().getStringExtra("PostalCode");
                     final String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
                     final String Adrres = "บ้านเลขที่ #:#"+txtHouseNo+"\n"+
@@ -308,7 +323,10 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    Toast.makeText(getApplicationContext(),"ทำรายการเสร็จสิ้น",Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), FinishActivity.class);
+                                    intent.putExtra("IdCode", txtIdCode);
+                                    intent.putExtra("DoctorName", txtDoctorName);
+                                    startActivity(intent);
                                     finish();
 
                                 }
@@ -356,6 +374,66 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
                     };
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(stringRequest);
+
+                    //------------------------------------------------------------------------------------------------------
+
+                    String Url1 = localhost.url+"updateWeb.php";
+                    StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Url1,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    AlertDialog.Builder dialogs = new AlertDialog.Builder(ScrollingUpdateEmployeeAddDetailActivity.this);
+                                    dialogs.setTitle("คำเตือน");
+                                    dialogs.setMessage("ระบบเกิดข้อผิดพลาด กรุณาตรวจสอบการเชื่อมต่อข้อมูลของท่าน");
+                                    dialogs.setCancelable(true);
+                                    dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    dialogs.show();
+                                }
+                            }){
+                        @Override
+                        protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+
+
+                            Map<String,String> params = new HashMap<String, String>();
+                            params.put("Content-Type", "application/json; charset=utf-8");
+                            params.put("com_code",txtIdCode);
+                            params.put("com_card_number",txtIdpeople);
+                            params.put("com_title_name",txtTitleName);
+                            params.put("com_name",txtName);
+                            params.put("com_lname",txtSurname);
+                            params.put("no_address",txtHouseNo);
+                            params.put("alley",txtLane);
+                            params.put("road",txtRoad);
+                            params.put("district",txtSubDistrict);
+                            params.put("prefecture",txtDistrict);
+                            params.put("province",txtProvince);
+                            params.put("zip_code",txtPostalCode);
+                            params.put("relevance",txtRelationship);
+                            params.put("com_tel",txtPhone);
+                            params.put("com_email",txtEmail);
+                            params.put("PhoneHome",txtPhoneHome);
+                            params.put("Main",txtMain1);
+                            return params;
+                        }
+
+                    };
+                    RequestQueue requestQueue1 = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue1.add(stringRequest1);
+
+                    new  AsyncCheck1().execute();
+                    new  AsyncCheck2().execute();
+
+                    //------------------------------------------------------------------------------------------------------
 
                 }else {
                     if (txtMain.getText().toString().isEmpty()) {
@@ -579,6 +657,354 @@ public class ScrollingUpdateEmployeeAddDetailActivity extends AppCompatActivity 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
+    private class AsyncCheck1 extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+        String IdCode = getIntent().getStringExtra("IdCode");
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "getComID.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                conn.setChunkedStreamingMode(1024);
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", IdCode);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("no rows")){
+                dataComID = ("");
+            }else {
+                try {
+                    JSONArray jArray = new JSONArray(result);
+                    JSONObject json_data = jArray.getJSONObject(0);
+                    dataComID = (json_data.getString("com_id"));
+
+                    String Url2 = localhost.url+"updateInformatiomWeb.php";
+                    StringRequest stringRequest2 = new StringRequest(Request.Method.POST, Url2,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    AlertDialog.Builder dialogs = new AlertDialog.Builder(ScrollingUpdateEmployeeAddDetailActivity.this);
+                                    dialogs.setTitle("คำเตือน");
+                                    dialogs.setMessage("ระบบเกิดข้อผิดพลาด กรุณาตรวจสอบการเชื่อมต่อข้อมูลของท่าน");
+                                    dialogs.setCancelable(true);
+                                    dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    dialogs.show();
+                                }
+                            }){
+                        @Override
+                        protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+
+                            final String txtDetail = data;
+                            final String txtHospitalName = getIntent().getStringExtra("HospitalName");
+
+                            Map<String,String> params = new HashMap<String, String>();
+                            params.put("Content-Type", "application/json; charset=utf-8");
+                            params.put("comID",String.valueOf(Integer.parseInt(dataComID)));
+                            params.put("hospital",txtHospitalName);
+                            params.put("detail_complaint",txtDetail);
+                            return params;
+                        }
+
+                    };
+                    RequestQueue requestQueue2 = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue2.add(stringRequest2);
+
+
+                } catch (JSONException e) {
+
+                }
+            }
+        }
+
+    }
+    private class AsyncCheck2 extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+        String IdCode = getIntent().getStringExtra("IdCode");
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "getComID.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                conn.setChunkedStreamingMode(1024);
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", IdCode);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("no rows")){
+                dataComID = ("");
+            }else {
+                try {
+                    JSONArray jArray = new JSONArray(result);
+                    JSONObject json_data = jArray.getJSONObject(0);
+                    dataComID = (json_data.getString("com_id"));
+                    new AsyncCheck3().execute(dataComID);
+
+                } catch (JSONException e) {
+
+                }
+            }
+        }
+
+    }
+    private class AsyncCheck3 extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "deleteTB_doctor.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                conn.setChunkedStreamingMode(1024);
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", params[0]);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+
     }
 
 }

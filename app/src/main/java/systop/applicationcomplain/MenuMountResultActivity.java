@@ -45,7 +45,7 @@ public class MenuMountResultActivity extends AppCompatActivity {
     private RecyclerView mRVManageEmployee;
     private AdpaterMountResult mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,19 +90,24 @@ public class MenuMountResultActivity extends AppCompatActivity {
         });
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, R.color.colorAccent, R.color.colorPrimaryDark);
 
-        doTheAutoRefresh();
+//        doTheAutoRefresh();
 
 
     }
-    private void doTheAutoRefresh() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncFetch().execute();
-                doTheAutoRefresh();
-            }
-        }, 1000);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncFetch().execute();
     }
+//    private void doTheAutoRefresh() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncFetch().execute();
+//                doTheAutoRefresh();
+//            }
+//        }, 1000);
+//    }
 
 
     public void onBackPressed() {
@@ -111,7 +116,7 @@ public class MenuMountResultActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });

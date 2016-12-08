@@ -52,10 +52,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -274,6 +277,16 @@ public class ScrollingEmployeeAddDoctorActivity extends AppCompatActivity implem
             String txtPostalCode = getIntent().getStringExtra("PostalCode");
             String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
+            Date dNow1 = new Date( );
+            SimpleDateFormat ft1 =
+                    new SimpleDateFormat ("ddMMyyyyhhmm");
+            Random rand = new Random();
+            int x = rand.nextInt(100000);
+
+
+            final String txtIdCode = "eTMCm"+ft1.format(dNow1)+ String.format("%05d", x);
+            String DataCode = txtIdCode;
+
             public void onClick(DialogInterface dialog, int which) {
                 if(arrayList.size() == 0 ) {
                     if(arrayList.size() == 0) {
@@ -292,7 +305,7 @@ public class ScrollingEmployeeAddDoctorActivity extends AppCompatActivity implem
                 }else {
                     String dataDoctor = "";
                     for (int i = 0; i < arrayList.size(); i++) {
-                        dataDoctor = dataDoctor+(i+1)+":"+arrayList.get(i).doctorName+"\n";
+                        dataDoctor = dataDoctor+(i+1)+" : "+arrayList.get(i).doctorName+"\n";
                     }
 
                     Intent intent = new Intent(getApplicationContext(), ScrollingEmployeeDetailActivity.class);
@@ -316,6 +329,7 @@ public class ScrollingEmployeeAddDoctorActivity extends AppCompatActivity implem
 
                     intent.putExtra("DoctorName", dataDoctor);
                     intent.putExtra("HospitalName", txtHospital.getText().toString());
+                    intent.putExtra("code", DataCode);
                     startActivity(intent);
                     finish();
                 }
@@ -465,10 +479,11 @@ public class ScrollingEmployeeAddDoctorActivity extends AppCompatActivity implem
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
                     DataSearch Data = new DataSearch();
+                    Data.titleDoc = json_data.getString("title");
                     Data.nameDoc = json_data.getString("name");
                     Data.snameDoc = json_data.getString("surname");
                     Data.idcodeDoc = json_data.getString("numbercode");
-                    dataString.add(json_data.getString("name")+"  "+json_data.getString("surname")+"  "+json_data.getString("numbercode"));
+                    dataString.add(json_data.getString("title")+"  "+json_data.getString("name")+"  "+json_data.getString("surname")+"  "+json_data.getString("numbercode"));
                 }
 
                 // Setup and Handover data to recyclerview

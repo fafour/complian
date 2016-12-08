@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -40,6 +44,8 @@ public class AdapterWrongResult extends RecyclerView.Adapter<RecyclerView.ViewHo
     private DataComplain current = new DataComplain();
     int currentPos=0;
     String data1;
+    String getName;
+    String getStatus;
 
     // create constructor to innitilize context and data sent from MainActivity
     public AdapterWrongResult(Context context, List<DataComplain> data){
@@ -62,11 +68,235 @@ public class AdapterWrongResult extends RecyclerView.Adapter<RecyclerView.ViewHo
         MyHolder myHolder= (MyHolder) holder;
         current=data.get(position);
         myHolder.textMain.setText("หัวข้อ : " +current.Main);
-        myHolder.textResponsiblePerson.setText("ผู้รับผิดชอบเรื่อง : " + current.ResponsiblePerson);
         myHolder.textIdcode.setText("เลขที่รับเรื่อง : " + current.IdCode);
-        myHolder.textStatus.setText("สถานะ : " + current.Status );
-        myHolder.textStatus.setTextColor(ContextCompat.getColor(context, R.color.dot_dark_screen2));
         myHolder.txtNum.setText((position+1)+".");
+
+        getDataName task = new getDataName(holder);
+        task.execute(current.ResponsiblePerson);
+
+        getDataStatus tasks = new getDataStatus(holder);
+        tasks.execute(current.Status);
+
+
+    }
+    public class getDataName extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+
+        private final RecyclerView.ViewHolder holder;
+
+        public getDataName(RecyclerView.ViewHolder holder) {
+            this.holder = holder;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "getName.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", params[0]);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("no rows")){
+                getName = "ไม่มีผู้รับผิดชอบ";
+                MyHolder myHolder= (MyHolder) holder;
+                myHolder.textResponsiblePerson.setText("ผู้รับผิดชอบเรื่อง : " +getName);
+            }else {
+                try {
+                    JSONArray jArray = new JSONArray(result);
+                    JSONObject json_data = jArray.getJSONObject(0);
+                    getName = (json_data.getString("NameUser") + "  " + json_data.getString("SurNameUser"));
+                    MyHolder myHolder= (MyHolder) holder;
+                    myHolder.textResponsiblePerson.setText("ผู้รับผิดชอบเรื่อง : " +getName);
+
+                } catch (JSONException e) {
+
+                }
+            }
+        }
+
+    }
+
+    public class getDataStatus extends AsyncTask<String, String, String> {
+        HttpURLConnection conn;
+        URL url = null;
+
+        private final RecyclerView.ViewHolder holder;
+
+        public getDataStatus(RecyclerView.ViewHolder holder) {
+            this.holder = holder;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+
+                // Enter URL address where your json file resides
+                // Even you can make call to php file which returns json data
+                url = new URL(localhost.url + "getStatus.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+                // setDoInput and setDoOutput to true as we send and recieve data
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // add parameter to our above url
+                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", params[0]);
+                String query = builder.build().getEncodedQuery();
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+
+                } else {
+
+                    return ("unsuccessful");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONArray jArray = new JSONArray(result);
+                JSONObject json_data = jArray.getJSONObject(0);
+                getStatus = (json_data.getString("st_title"));
+                MyHolder myHolder= (MyHolder) holder;
+                myHolder.textStatus.setText("สถานะ : " + getStatus );
+                myHolder.textStatus.setTextColor(ContextCompat.getColor(context, R.color.dot_dark_screen2));
+            } catch (JSONException e) {
+
+            }
+
+        }
 
     }
 
@@ -99,7 +329,7 @@ public class AdapterWrongResult extends RecyclerView.Adapter<RecyclerView.ViewHo
             final int position1 = getAdapterPosition();
             final AlertDialog.Builder adb=new AlertDialog.Builder(context);
             adb.setTitle("เลือกรายการ");
-            final CharSequence[] items = { "ดูรายละเอียด","แก้ไขข้อมูล","แก้ไขสถานะ","แกไขผู้รับผิดชอบ","ลบข้อมูล"};
+            final CharSequence[] items = { "ดูรายละเอียด","แก้ไขข้อมูล","แก้ไขสถานะ","แก้ไขผู้รับผิดชอบ","ลบข้อมูล"};
             adb.setItems(items, new AlertDialog.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {

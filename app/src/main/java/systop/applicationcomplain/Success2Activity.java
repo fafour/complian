@@ -117,6 +117,125 @@ public class Success2Activity extends AppCompatActivity {
             }
         });
         clearCache.deleteCache(this);
+
+
+        final String HospitalName = getIntent().getStringExtra("HospitalName");
+        final String Detail = getIntent().getStringExtra("Detail");
+
+        String Url2 = localhost.url+"insertComplainWeb.php";
+        StringRequest stringRequest2 = new StringRequest(Request.Method.POST, Url2,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+                java.util.Date dt = new java.util.Date();
+                java.text.SimpleDateFormat sdf =
+                        new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                String currentTime = sdf.format(dt);
+
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json; charset=utf-8");
+                params.put("hospital",HospitalName);
+                params.put("date_scene",currentTime);
+                params.put("detail_complaint",Detail);
+
+                return params;
+            }
+
+        };
+        RequestQueue requestQueue2 = Volley.newRequestQueue(getApplicationContext());
+        requestQueue2.add(stringRequest2);
+
+        String DocterName = getIntent().getStringExtra("DocterName");
+        String[] parts = DocterName.trim().split("\\r?\\n");
+
+        if(parts.length-1 == 0){
+            String a = parts[0];
+            final String[] b = a.split(" : ");
+            String dataDoctor = b[1];
+            final String[] dataDoc = dataDoctor.split("  ");
+            String Url3 = localhost.url+"insertAddDoctorWeb.php";
+            StringRequest stringRequest3 = new StringRequest(Request.Method.POST, Url3,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }){
+                @Override
+                protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+
+                    Map<String,String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/json; charset=utf-8");
+                    params.put("doc_title",dataDoc[0]);
+                    params.put("doc_name",dataDoc[1]);
+                    params.put("doc_lname",dataDoc[2]);
+                    params.put("doc_code",dataDoc[3]);
+                    return params;
+                }
+
+            };
+            RequestQueue requestQueue3 = Volley.newRequestQueue(getApplicationContext());
+            requestQueue3.add(stringRequest3);
+
+
+        }else{
+            for(int i = 0 ; i< parts.length;i++) {
+                String a = parts[i];
+                String[] b = a.split(" : ");
+                String dataDoctor = b[1];
+                final String[] dataDoc = dataDoctor.split("  ");
+                String Url3 = localhost.url+"insertAddDoctorWeb.php";
+                StringRequest stringRequest3 = new StringRequest(Request.Method.POST, Url3,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }){
+                    @Override
+                    protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("Content-Type", "application/json; charset=utf-8");
+                        params.put("doc_title",dataDoc[0]);
+                        params.put("doc_name",dataDoc[1]);
+                        params.put("doc_lname",dataDoc[2]);
+                        params.put("doc_code",dataDoc[3]);
+                        return params;
+                    }
+
+                };
+                RequestQueue requestQueue3 = Volley.newRequestQueue(getApplicationContext());
+                requestQueue3.add(stringRequest3);
+
+            }
+        }
+
+
         String Url = localhost.url+"pic_Get.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
                 new Response.Listener<String>() {
@@ -294,7 +413,7 @@ public class Success2Activity extends AppCompatActivity {
             column5.addElement(new Paragraph("เรียน  เลขาธิการแพทยสภา ", font));
             column5.go();
 
-            String[] adress = Adress.split("\n");
+            String[] adress = Adress.split("\\r?\\n");
             String data = adress[0];
             String data1 = adress[1];
             String data2 = adress[2];
@@ -372,10 +491,10 @@ public class Success2Activity extends AppCompatActivity {
             column9.go();
 
             String txtname =  "";
-            String[] partsDoc = DocterName.split("\n");
+            String[] partsDoc = DocterName.split("\\r?\\n");
             for(int i = 0 ; i< partsDoc.length;i++) {
                 String a = partsDoc[i];
-                String[] b = a.split(":");
+                String[] b = a.split(" : ");
                 String dataDoctor =b[1];
                 txtname = txtname+(i+1)+dataDoctor+"\n";
             }

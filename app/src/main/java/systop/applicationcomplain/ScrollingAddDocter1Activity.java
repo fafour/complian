@@ -19,6 +19,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,9 +42,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -214,6 +219,19 @@ public class ScrollingAddDocter1Activity extends AppCompatActivity implements Vi
             String txtPostalCode = getIntent().getStringExtra("PostalCode");
             String txtPhoneHome = getIntent().getStringExtra("PhoneHome");
 
+
+            Date dNow1 = new Date( );
+            SimpleDateFormat ft1 =
+                    new SimpleDateFormat ("ddMMyyyyhhmm");
+            Random rand = new Random();
+            int x = rand.nextInt(100000);
+
+
+            final String txtIdCode = "eTMCm"+ft1.format(dNow1)+ String.format("%05d", x);
+            String DataCode = txtIdCode;
+
+
+
             public void onClick(DialogInterface dialog, int which) {
                 txtHospital = Hospital.getText().toString();
                 if(arrayList.size() == 0) {
@@ -235,7 +253,7 @@ public class ScrollingAddDocter1Activity extends AppCompatActivity implements Vi
 
                     String dataDoctor = "";
                     for (int i = 0; i < arrayList.size(); i++) {
-                        dataDoctor = dataDoctor+(i+1)+":"+arrayList.get(i).doctorName+"\n";
+                        dataDoctor = dataDoctor+(i+1)+" : "+arrayList.get(i).doctorName+"\n";
                     }
 
                     Intent intent = new Intent(getApplicationContext(), ScrollingDetail1Activity.class);
@@ -258,6 +276,7 @@ public class ScrollingAddDocter1Activity extends AppCompatActivity implements Vi
 
                     intent.putExtra("DoctorName", dataDoctor);
                     intent.putExtra("HospitalName", txtHospital);
+                    intent.putExtra("code", DataCode);
                     startActivity(intent);
                     finish();
                 }
@@ -280,9 +299,115 @@ public class ScrollingAddDocter1Activity extends AppCompatActivity implements Vi
     public void selectData(final View view){
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
         final View subView = inflater.inflate(R.layout.doctor_detail, null);
+        final EditText title1 = (EditText)subView.findViewById(R.id.item_title);
         final EditText name1 = (EditText)subView.findViewById(R.id.item_name);
         final EditText sname1 = (EditText)subView.findViewById(R.id.item_sname);
         final EditText id1 = (EditText)subView.findViewById(R.id.item_id);
+
+        title1.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                String str = s.toString();
+                if(str.length() > 0 && str.contains("  "))
+                {
+                    title1.setText("");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        name1.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                String str = s.toString();
+                if(str.length() > 0 && str.contains("  "))
+                {
+                    name1.setText("");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        sname1.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                String str = s.toString();
+                if(str.length() > 0 && str.contains("  "))
+                {
+                    sname1.setText("");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        id1.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                String str = s.toString();
+                if(str.length() > 0 && str.contains("  "))
+                {
+                    id1.setText("");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setView(subView);
         dialog.create();
@@ -299,17 +424,24 @@ public class ScrollingAddDocter1Activity extends AppCompatActivity implements Vi
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String txtTitle = title1.getText().toString();
                 String txtname = name1.getText().toString();
                 String txtsname = sname1.getText().toString();
                 String txtid = id1.getText().toString();
 
 
-                if(!txtname.isEmpty() && !txtsname.isEmpty()) {
-                    String txtData = txtname + "  " + txtsname + "   " + txtid;
+                if(!txtname.isEmpty() && !txtsname.isEmpty() && !txtTitle.isEmpty()) {
+                    String txtData = txtTitle+"  "+txtname + "  " + txtsname + "   " + txtid;
                     arrayList.add(new DetailDoctor(txtData));
                     listview.setAdapter(adapter);
                     alertDialog.dismiss();
                 }else {
+                    if (txtTitle.isEmpty()) {
+                        title1.setError("กรุณากรอกคำขึ้นต้นชื่อ");
+
+                    } else {
+                        title1.setError(null);
+                    }
                     if (txtname.isEmpty()) {
                         name1.setError("กรุณากรอกชื่อ");
 

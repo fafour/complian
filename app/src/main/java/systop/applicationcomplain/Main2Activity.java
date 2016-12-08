@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,17 +23,11 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Main2Activity extends AppCompatActivity {
-    TextView txtMainApp;
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
-        txtMainApp = (TextView) findViewById(R.id.txtMainApp);
-
-        Typeface face= Typeface.createFromAsset(getAssets(), "fonts/datafont.ttf");
-        txtMainApp.setTypeface(face);
-
 
         clearCache.deleteCache(this);
 
@@ -62,6 +57,11 @@ public class Main2Activity extends AppCompatActivity {
     public  void  Click1(View view){
         Intent intent = new Intent(getApplicationContext(), InputIdPeopleActivity.class);
         startActivity(intent);
+//        if(mediaPlayer!=null) {
+//            mediaPlayer.stop();
+//        }
+//        mediaPlayer = MediaPlayer.create(getBaseContext(), R.raw.sound);
+//        mediaPlayer.start();
     }
     public  void  Click2(View view){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

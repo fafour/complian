@@ -104,7 +104,7 @@ public class UpdateStatusActivity extends AppCompatActivity implements Spinner.O
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        detailStatus = parent.getItemAtPosition(position).toString();
+        detailStatus = String.valueOf(id+1);
 
     }
 
@@ -211,6 +211,47 @@ public class UpdateStatusActivity extends AppCompatActivity implements Spinner.O
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
+        //------------------------------------------------------------------------------------------------------
+
+        String Url1 = localhost.url+"updateStatusWeb.php";
+        StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Url1,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        AlertDialog.Builder dialogs = new AlertDialog.Builder(UpdateStatusActivity.this);
+                        dialogs.setTitle("คำเตือน");
+                        dialogs.setMessage("ระบบเกิดข้อผิดพลาด กรุณาตรวจสอบการเชื่อมต่อข้อมูลของท่าน");
+                        dialogs.setCancelable(true);
+                        dialogs.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialogs.show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams()throws com.android.volley.AuthFailureError{
+
+
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json; charset=utf-8");
+                params.put("com_code",Username);
+                params.put("com_status",detailStatus);
+                return params;
+            }
+
+        };
+        RequestQueue requestQueue1 = Volley.newRequestQueue(getApplicationContext());
+        requestQueue1.add(stringRequest1);
     }
     @Override
     protected void attachBaseContext(Context base) {

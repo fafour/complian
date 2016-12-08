@@ -53,7 +53,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
     TextView txtUserName;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     RelativeLayout notificationCount1;
     TextView tv1,tv2,tv3;
     Context context;
@@ -75,7 +75,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         txtUserName = (TextView) findViewById(R.id.txtUserName);
         txtUserName.setText("สวัสดี "+User +"!!!");
 
-        doTheAutoCheck();
+//        doTheAutoCheck();
         new AsyncCheck().execute();
         new AsyncCheck1().execute();
         new AsyncCheck2().execute();
@@ -196,7 +196,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), MenuCheapActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_send) {
-            handler.removeMessages(0);
+//            handler.removeMessages(0);
             finish();
         } else if (id == R.id.nav_a) {
             Intent intent = new Intent(getApplicationContext(), MenuWrongActivity.class);
@@ -275,7 +275,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
                 dialog.setCancelable(true);
                 dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        handler.removeMessages(0);
+//                        handler.removeMessages(0);
                         finish();
                     }
                 });
@@ -298,7 +298,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });
@@ -364,18 +364,27 @@ public class FragmentNavigationDrawer extends AppCompatActivity
         startActivity(intent);
 
     }
-    private void doTheAutoCheck() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncCheck1().execute();
-                new AsyncCheck2().execute();
-                new AsyncCheck3().execute();
-                new AsyncCheck().execute();
-                doTheAutoCheck();
-            }
-        }, 500);
+//    private void doTheAutoCheck() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncCheck1().execute();
+//                new AsyncCheck2().execute();
+//                new AsyncCheck3().execute();
+//                new AsyncCheck().execute();
+//                doTheAutoCheck();
+//            }
+//        }, 500);
+//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncCheck1().execute();
+        new AsyncCheck2().execute();
+        new AsyncCheck3().execute();
+        new AsyncCheck().execute();
     }
+
 
     private class AsyncCheck extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
@@ -473,7 +482,7 @@ public class FragmentNavigationDrawer extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ClearActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
             }
 
         }

@@ -32,7 +32,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MenuEmployeeActivity extends AppCompatActivity {
     TextView txtUserName;
-    private final Handler handler = new Handler();
+//    private final Handler handler = new Handler();
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     @Override
@@ -69,7 +69,7 @@ public class MenuEmployeeActivity extends AppCompatActivity {
         dialog.setCancelable(true);
         dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
                 finish();
             }
         });
@@ -120,15 +120,20 @@ public class MenuEmployeeActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    private void doTheAutoCheck() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new AsyncCheck().execute();
-                doTheAutoCheck();
-            }
-        }, 1000);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncCheck().execute();
     }
+//    private void doTheAutoCheck() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AsyncCheck().execute();
+//                doTheAutoCheck();
+//            }
+//        }, 1000);
+//    }
     private class AsyncCheck extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
@@ -226,7 +231,7 @@ public class MenuEmployeeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ClearActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                handler.removeMessages(0);
+//                handler.removeMessages(0);
             }
 
         }

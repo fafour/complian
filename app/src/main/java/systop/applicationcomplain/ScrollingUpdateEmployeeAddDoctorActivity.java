@@ -118,14 +118,14 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
         String[] parts = DocterName.split("\\r?\\n");
         if(parts.length-1 == 0){
             String a = parts[0];
-            String[] b = a.split(":");
+            String[] b = a.split(" : ");
             String dataDoctor = b[1];
             arrayList.add(new DetailDoctor(dataDoctor));
 
         }else{
             for(int i = 0 ; i< parts.length;i++) {
                 String a = parts[i];
-                String[] b = a.split(":");
+                String[] b = a.split(" : ");
                 String dataDoctor = b[1];
                 arrayList.add(new DetailDoctor(dataDoctor));
             }
@@ -328,7 +328,7 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
                 }else {
                     String dataDoctor = "";
                     for (int i = 0; i < arrayList.size(); i++) {
-                        dataDoctor = dataDoctor+(i+1)+":"+arrayList.get(i).doctorName+"\n";
+                        dataDoctor = dataDoctor+(i+1)+" : "+arrayList.get(i).doctorName+"\n";
                     }
 
                     Intent intent = new Intent(getApplicationContext(), ScrollingUpdateEmployeeAddDetailActivity.class);
@@ -507,10 +507,11 @@ public class ScrollingUpdateEmployeeAddDoctorActivity extends AppCompatActivity 
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
                     DataSearch Data = new DataSearch();
+                    Data.titleDoc = json_data.getString("title");
                     Data.nameDoc = json_data.getString("name");
                     Data.snameDoc = json_data.getString("surname");
                     Data.idcodeDoc = json_data.getString("numbercode");
-                    dataString.add(json_data.getString("name")+"  "+json_data.getString("surname")+"  "+json_data.getString("numbercode"));
+                    dataString.add(json_data.getString("title")+"  "+json_data.getString("name")+"  "+json_data.getString("surname")+"  "+json_data.getString("numbercode"));
                 }
 
                 // Setup and Handover data to recyclerview
